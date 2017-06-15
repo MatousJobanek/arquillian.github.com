@@ -53,11 +53,11 @@
   github_id: mdoninger
 - email: atzoum@imac.lan
   github_id: atzoum
+- email: arquillian-team@lists.jboss.org
+  github_id: alien-ike
 - email: jboss-qa-internal@redhat.com
   github_id: alien-ike
 - email: jbossqainternal@redhat.com
-  github_id: alien-ike
-- email: arquillian-team@lists.jboss.org
   github_id: alien-ike
 - email: asotobu@gmail.com
   github_id: lordofthejars
