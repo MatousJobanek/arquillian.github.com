@@ -10,7 +10,6 @@ addons:
 
 cache:
   directories:
-    - $HOME/arquillian-blog
     - $HOME/.m2
 
 branches:
@@ -19,7 +18,7 @@ branches:
 
 install:
   - ls
-  - ./build_prod_and_run.sh --working-dir=$HOME/arquillian-blog
+  - ./build_prod_and_run.sh --working-dir=$PWD/..
   - git clone git@github.com:MatousJobanek/arquillian.github.com-tests.git $HOME/arquillian-blog/arquillian.github.com-tests
 
 script:

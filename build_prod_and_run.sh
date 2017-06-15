@@ -43,6 +43,7 @@ if [ ! -d "${ARQUILLIAN_PROJECT_DIR}" ]; then
 else
     echo "=> The project arquillian.github.com project will not be cloned because it exist on location: ${ARQUILLIAN_PROJECT_DIR}"
 fi
+ls -l ${ARQUILLIAN_PROJECT_DIR}
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ -z "${GITHUB_AUTH}" ]; then
@@ -72,8 +73,9 @@ fi
 
 echo "#!/bin/bash
 bash --login <<EOF
-echo 'cd arquillian.github.com'
 cd arquillian.github.com
+ls -l .* -d
+ls -l 
 echo 'bundle install -j 10 --path ./.gems'
 bundle install -j 10 --path ./.gems
 EOF" > ${SCRIPTS_LOCATION}/install_bundle.sh
