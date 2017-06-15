@@ -68,4 +68,4 @@
 - github_id: ivannov
   jboss_username: ivan_stefanov
 - github_id: alien-ike
-  jboss_username: Arquillian
+  name: Arquillian
