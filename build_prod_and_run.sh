@@ -44,8 +44,8 @@ else
     echo "=> The project arquillian.github.com project will not be cloned because it exist on location: ${ARQUILLIAN_PROJECT_DIR}"
 fi
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ -z "${GITHUB_AUTH}" ]; then
-    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     GITHUB_AUTH=`cat ${DIR}/.github-auth`
 fi
 echo "=> Setting .github-auth file"
@@ -142,8 +142,10 @@ chmod +x ${SCRIPTS_LOCATION}/*
 echo "=> Killing any already running arquillian-blog containers"
 docker kill arquillian-blog
 
+cd ${ARQUILLIAN_PROJECT_DIR}
 echo "=> Building arquillian-blog image"
-docker build -t arquillian/blog ${ARQUILLIAN_PROJECT_DIR}
+docker build -t arquillian/blog .
+cd ${DIR}
 
 echo "=> Launching arquillian-blog container... "
 DOCKER_ID=`docker run -d -it --net=host -v ${ARQUILLIAN_PROJECT_DIR}:/home/dev/${ARQUILLIAN_PROJECT_DIR##*/} --name=arquillian-blog -v ${LOGS_LOCATION}:${DOCKER_LOGS_LOCATION} -v ${SCRIPTS_LOCATION}:${DOCKER_SCRIPTS_LOCATION} -p 4242:4242 arquillian/blog`
