@@ -84,9 +84,9 @@ echo "#!/bin/bash
 bash --login <<EOF
 cd arquillian.github.com
 
-echo -e \"======================================================================================================\"
+echo \"======================\"
 echo 'running awestruct -d'
-echo -e \"======================================================================================================\"
+echo \"======================\"
 
 awestruct -d > ${DOCKER_LOGS_LOCATION}/awestruct-d_log 2>&1 &
 tail -f ${DOCKER_LOGS_LOCATION}/awestruct-d_log &
@@ -103,9 +103,9 @@ echo "#!/bin/bash
 bash --login <<EOF
 cd arquillian.github.com
 
-echo -e \"======================================================================================================\"
-echo 'running awestruct --server -P production'
-echo -e \"======================================================================================================\"
+echo \"=========================================\"
+echo  'running awestruct --server -P production'
+echo \"=========================================\"
 
 setsid awestruct --server -P production  > ${DOCKER_LOGS_LOCATION}/awestruct-server-production_log 2>&1 &
 tail -f ${DOCKER_LOGS_LOCATION}/awestruct-d_log &
