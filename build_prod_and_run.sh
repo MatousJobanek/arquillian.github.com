@@ -1,0 +1,178 @@
+#!/bin/bash
+
+######################### parse input parameters #########################
+
+for i in "$@"
+do
+case $i in
+    -wd=*|--working-dir=*)
+    WORKING_DIR="${i#*=}"
+    shift
+    ;;
+    -ga=*|--github-auth=*)
+    GITHUB_AUTH="${i#*=}"
+    shift
+    ;;
+    -c=*|--clean=*)
+    CLEAN="${i#*=}"
+    shift # past argument=value
+    ;;
+    --default)
+    DEFAULT=YES
+    shift # past argument with no value
+    ;;
+    *)
+            # unknown option
+    ;;
+esac
+done
+
+######################### set variables & clone & create dirs #########################
+
+WORKING_DIR=`readlink -f ${WORKING_DIR:-/tmp/arquillian-blog}`
+echo "=> Working directory is: ${WORKING_DIR}"
+if [ ! -d ${WORKING_DIR} ]; then
+    echo "=> Creating the working directory"
+    mkdir ${WORKING_DIR}
+fi
+
+ARQUILLIAN_PROJECT_DIR="${WORKING_DIR}/arquillian.github.com"
+if [ ! -d "${ARQUILLIAN_PROJECT_DIR}" ]; then
+    echo "=> Cloning arquillian.github.com project into ${ARQUILLIAN_PROJECT_DIR}"
+    git clone git@github.com:MatousJobanek/arquillian.github.com.git ${ARQUILLIAN_PROJECT_DIR}
+else
+    echo "=> The project arquillian.github.com project will not be cloned because it exist on location: ${ARQUILLIAN_PROJECT_DIR}"
+fi
+
+if [ -z "${GITHUB_AUTH}" ]; then
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    GITHUB_AUTH=`cat ${DIR}/.github-auth`
+fi
+echo "=> Setting .github-auth file"
+echo ${GITHUB_AUTH} > ${ARQUILLIAN_PROJECT_DIR}/.github-auth
+
+DOCKER_LOGS_LOCATION="/home/dev/log"
+LOGS_LOCATION="${WORKING_DIR}/log"
+if [ ! -d "${LOGS_LOCATION}" ]; then
+    echo "=> Creating ${LOGS_LOCATION} directory"
+    mkdir ${LOGS_LOCATION}
+fi
+chmod o+w ${LOGS_LOCATION}
+
+DOCKER_SCRIPTS_LOCATION="/home/dev/scripts"
+SCRIPTS_LOCATION="${WORKING_DIR}/scripts"
+if [ ! -d "${SCRIPTS_LOCATION}" ]; then
+    echo "=> Creating ${SCRIPTS_LOCATION} directory"
+    mkdir ${SCRIPTS_LOCATION}
+fi
+
+
+
+######################### prepare scripts #########################
+
+echo "#!/bin/bash
+bash --login <<EOF
+echo 'cd arquillian.github.com'
+cd arquillian.github.com
+echo 'bundle install -j 10 --path ./.gems'
+bundle install -j 10 --path ./.gems
+EOF" > ${SCRIPTS_LOCATION}/install_bundle.sh
+
+
+
+echo "#!/bin/bash
+bash --login <<EOF
+cd arquillian.github.com
+
+echo -e \"======================================================================================================\"
+echo 'running awestruct -d'
+echo -e \"======================================================================================================\"
+
+awestruct -d > ${DOCKER_LOGS_LOCATION}/awestruct-d_log 2>&1 &
+tail -f ${DOCKER_LOGS_LOCATION}/awestruct-d_log &
+
+while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_LOGS_LOCATION}/awestruct-d_log; do
+    sleep 1
+done
+kill %1
+EOF" > ${SCRIPTS_LOCATION}/build_dev.sh
+
+
+
+echo "#!/bin/bash
+bash --login <<EOF
+cd arquillian.github.com
+
+echo -e \"======================================================================================================\"
+echo 'running awestruct --server -P production'
+echo -e \"======================================================================================================\"
+
+setsid awestruct --server -P production  > ${DOCKER_LOGS_LOCATION}/awestruct-server-production_log 2>&1 &
+tail -f ${DOCKER_LOGS_LOCATION}/awestruct-d_log &
+
+while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_LOGS_LOCATION}/awestruct-server-production_log; do
+    echo -n '='
+    sleep 1
+done
+EOF" > ${SCRIPTS_LOCATION}/build_prod_and_run.sh
+
+
+
+echo "#!/bin/bash
+bash --login <<EOF
+
+git config --global user.email "arquillian-team@lists.jboss.org"
+git config --global user.name "Arquillian"
+echo ${GITHUB_AUTH} > ~/.github-auth
+
+cd arquillian.github.com
+echo 'running awestruct -P production --deploy'
+awestruct -P production --deploy > ${DOCKER_LOGS_LOCATION}/awestruct-production-deploy_log  2>&1
+cat ${DOCKER_LOGS_LOCATION}/awestruct-production-deploy_log
+EOF" > ${SCRIPTS_LOCATION}/deploy.sh
+
+chmod +x ${SCRIPTS_LOCATION}/*
+
+
+
+######################### Build & run docker image #########################
+
+#rm -r _tmp _site
+
+echo "=> Killing any already running arquillian-blog containers"
+docker kill arquillian-blog
+
+echo "=> Building arquillian-blog image"
+docker build -t arquillian/blog ${ARQUILLIAN_PROJECT_DIR}
+
+echo "=> Launching arquillian-blog container... "
+DOCKER_ID=`docker run -d -it --rm --net=host -v ${ARQUILLIAN_PROJECT_DIR}:/home/dev/${ARQUILLIAN_PROJECT_DIR##*/} --name=arquillian-blog -v ${LOGS_LOCATION}:${DOCKER_LOGS_LOCATION} -v ${SCRIPTS_LOCATION}:${DOCKER_SCRIPTS_LOCATION} -p 4242:4242 arquillian/blog`
+echo "=> Running container with id ${DOCKER_ID}"
+
+
+######################### Executing scripts inside of docker image - building & running #########################
+
+echo "=> Installing gems inside of the container..."
+docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/install_bundle.sh
+
+echo "=> Building the pages with dev profile..."
+docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/build_dev.sh
+if grep -q 'An error occurred' ${LOGS_LOCATION}/awestruct-d_log; then
+    >&2 echo "=> There occurred an error when the pages were being generated with the command 'awestruct -d'."
+    >&2 echo "=> Check the output or the log files located in ${LOGS_LOCATION}"
+    exit 1
+fi
+
+echo "=> Building & running the pages with prod profile..."
+docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/build_prod_and_run.sh
+if grep -q 'An error occurred' ${LOGS_LOCATION}/awestruct-server-production_log; then
+    >&2 echo "=> There occurred an error when the pages were being generated with the command 'running awestruct -P production --deploy'."
+    >&2 echo "=> Check the output or the log files located in ${LOGS_LOCATION}"
+    exit 1
+fi
+
+
+
+PROCESS_LINE=`docker exec -i ${DOCKER_ID} ps aux | grep puma | grep -v grep`
+
+PROCESS_TO_KILL=`echo ${PROCESS_LINE} | awk '{print $2}'`
