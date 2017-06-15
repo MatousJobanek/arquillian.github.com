@@ -1,6 +1,7 @@
 #!/bin/bash
 
-
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. ${DIR}/build_prod_and_run.sh
 
 ######################### Running tests #########################
 
