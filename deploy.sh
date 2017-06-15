@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+
 ######################### Running tests #########################
 
 if [ -d "arquillian.github.com-tests" ]; then
