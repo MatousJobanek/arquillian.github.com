@@ -58,21 +58,22 @@ elif [[ "$CLEAN" = "true" || "$CLEAN" = "yes" ]] ; then
     rm -rf ${WORKING_DIR}/*
 fi
 
-
-CURRENT_BRANCH=`git branch | grep \* | cut -d ' ' -f2`
-LS_REMOTE_BRANCH=`git ls-remote --heads ${GIT_PROJECT} ${CURRENT_BRANCH}`
-if [ -z "${GITHUB_AUTH}" ]; then
-    BRANCH_TO_CLONE="${CURRENT_BRANCH}"
-else
-    BRANCH_TO_CLONE="develop"
-fi
-
 ARQUILLIAN_PROJECT_DIR="${WORKING_DIR}/arquillian.github.com"
-if [ ! -d "${ARQUILLIAN_PROJECT_DIR}" ]; then
-    echo "=> Cloning branch ${BRANCH_TO_CLONE} from project ${GIT_PROJECT} into ${ARQUILLIAN_PROJECT_DIR}"
-    git clone -b ${BRANCH_TO_CLONE} ${GIT_PROJECT} ${ARQUILLIAN_PROJECT_DIR}
-else
-    echo "=> The project arquillian.github.com project will not be cloned because it exist on location: ${ARQUILLIAN_PROJECT_DIR}"
+if [[ ${TRAVIS} != "true" ]]; then
+    CURRENT_BRANCH=`git branch | grep \* | cut -d ' ' -f2`
+    LS_REMOTE_BRANCH=`git ls-remote --heads ${GIT_PROJECT} ${CURRENT_BRANCH}`
+    if [ -z "${GITHUB_AUTH}" ]; then
+        BRANCH_TO_CLONE="${CURRENT_BRANCH}"
+    else
+        BRANCH_TO_CLONE="develop"
+    fi
+
+    if [ ! -d "${ARQUILLIAN_PROJECT_DIR}" ]; then
+        echo "=> Cloning branch ${BRANCH_TO_CLONE} from project ${GIT_PROJECT} into ${ARQUILLIAN_PROJECT_DIR}"
+        git clone -b ${BRANCH_TO_CLONE} ${GIT_PROJECT} ${ARQUILLIAN_PROJECT_DIR}
+    else
+        echo "=> The project arquillian.github.com project will not be cloned because it exist on location: ${ARQUILLIAN_PROJECT_DIR}"
+    fi
 fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
