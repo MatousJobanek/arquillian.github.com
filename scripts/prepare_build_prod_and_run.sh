@@ -109,9 +109,11 @@ echo \"======================\"
 echo 'running awestruct -d'
 echo \"======================\"
 
-awestruct -d 2>&1 | tee ${DOCKER_LOGS_LOCATION}/awestruct-d_log &
+DOCKER_AWESTRUCT_DEV_LOG=${DOCKER_LOGS_LOCATION}/awestruct-d_log
+touch ${DOCKER_AWESTRUCT_DEV_LOG}
+awestruct -d 2>&1 | tee ${DOCKER_AWESTRUCT_DEV_LOG} &
 
-while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_LOGS_LOCATION}/awestruct-d_log; do
+while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_AWESTRUCT_DEV_LOG}; do
     sleep 1
 done
 kill %1
@@ -127,9 +129,11 @@ echo \"=========================================\"
 echo  'running awestruct --server -P production'
 echo \"=========================================\"
 
-setsid awestruct --server -P production 2>&1 | tee ${DOCKER_LOGS_LOCATION}/awestruct-server-production_log &
+DOCKER_AWESTRUCT_PROD_LOG=${DOCKER_LOGS_LOCATION}/awestruct-server-production_log
+touch ${DOCKER_AWESTRUCT_PROD_LOG}
+setsid awestruct --server -P production 2>&1 | tee ${DOCKER_AWESTRUCT_PROD_LOG} &
 
-while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_LOGS_LOCATION}/awestruct-server-production_log; do
+while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_AWESTRUCT_PROD_LOG}; do
     echo -n '='
     sleep 1
 done
@@ -141,7 +145,7 @@ echo "#!/bin/bash
 bash --login <<EOF
 
 git config --global user.email "arquillian-team@lists.jboss.org"
-git config --global user.name "Arquillian"
+git config --global user.name "Alien Ike"
 echo ${GITHUB_AUTH} > ~/.github-auth
 
 cd arquillian.github.com

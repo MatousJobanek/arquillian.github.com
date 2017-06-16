@@ -26,10 +26,10 @@ $MAVEN_COMMAND 2>&1 | tee ${LOGS_LOCATION}/maven-ui-tests_log
 
 
 if grep -q '[INFO] BUILD FAILURE' ${LOGS_LOCATION}/maven-ui-tests_log; then
-    if [[ "$IGNORE_MAVEN_FAILURE" != true && "$IGNORE_MAVEN_FAILURE" != yes ]] ; then
+    if [[ "$IGNORE_MAVEN_FAILURE" != "true" && "$IGNORE_MAVEN_FAILURE" != "yes" ]] ; then
         >&2 echo "=> There occurred an error when the pages were being generated with the command 'running awestruct -P production --deploy'."
         >&2 echo "=> Check the output or the log files located in ${LOGS_LOCATION}"
-        #exit 1
+        exit 1
     fi
 fi
 
