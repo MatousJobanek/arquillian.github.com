@@ -11,7 +11,7 @@ if [[ ${TRAVIS} = "true" ]]; then
         fi
     else
         echo "=> The pages won't be deployed - the targeted branch is not \"develop\""
-        exit 0  ;
+        exit 0;
     fi
 fi
 
