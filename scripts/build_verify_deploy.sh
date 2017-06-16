@@ -2,8 +2,8 @@
 
 ######################### Prepare & build & run #########################
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. ${CURRENT_DIR}/build_prod_and_run.sh
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. ${SCRIPT_DIR}/build_prod_and_run.sh
 
 IGNORE_MAVEN_FAILURE=${IGNORE_MAVEN_FAILURE:-true}
 BROWSER_COMMAND=${BROWSER_COMMAND:-"firefox"}
@@ -17,7 +17,7 @@ if [ -d "arquillian.github.com-tests" ]; then
     rm -rf arquillian.github.com-tests
 fi
 TEST_PROJECT_DIRECTORY=${WORKING_DIR}/arquillian.github.com-tests
-git clone git@github.com:MatousJobanek/arquillian.github.com-tests.git ${TEST_PROJECT_DIRECTORY}
+git clone https://github.com/MatousJobanek/arquillian.github.com-tests ${TEST_PROJECT_DIRECTORY}
 
 #todo use mvnw
 MAVEN_COMMAND="mvn clean verify -f ${TEST_PROJECT_DIRECTORY}/pom.xml -Darquillian.blog.url=http://localhost:4242/ -Dbrowser=${BROWSER_TEST}"
@@ -53,4 +53,4 @@ done
 docker exec -i ${DOCKER_ID} kill ${PROCESS_TO_KILL}
 docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/deploy.sh
 
-${CURRENT_DIR}/deploy.sh
+${SCRIPT_DIR}/deploy.sh

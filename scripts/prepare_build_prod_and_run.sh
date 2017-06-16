@@ -36,6 +36,8 @@ done
 
 ######################### set variables & clone & create dirs #########################
 
+CURRENT_DIR=`pwd`
+
 WORKING_DIR=`readlink -f ${WORKING_DIR:-/tmp/arquillian-blog}`
 echo "=> Working directory is: ${WORKING_DIR}"
 if [ ! -d ${WORKING_DIR} ]; then
@@ -56,9 +58,9 @@ else
     echo "=> The project arquillian.github.com project will not be cloned because it exist on location: ${ARQUILLIAN_PROJECT_DIR}"
 fi
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ -z "${GITHUB_AUTH}" ]; then
-    GITHUB_AUTH=`cat ${CURRENT_DIR}/.github-auth`
+    GITHUB_AUTH=`cat ${SCRIPT_DIR}/../.github-auth`
 fi
 echo "=> Setting .github-auth file"
 echo ${GITHUB_AUTH} > ${ARQUILLIAN_PROJECT_DIR}/.github-auth
@@ -148,12 +150,12 @@ chmod +x ${SCRIPTS_LOCATION}/*
 
 #rm -r _tmp _site
 
-echo "=> Killing any already running arquillian-blog containers"
+echo "=> Killing and removing any already existing arquillian-blog containers..."
 docker kill arquillian-blog
 docker rm arquillian-blog
 
 cd ${ARQUILLIAN_PROJECT_DIR}
-echo "=> Building arquillian-blog image"
+echo "=> Building arquillian-blog image..."
 docker build -t arquillian/blog .
 cd ${CURRENT_DIR}
 
@@ -182,8 +184,6 @@ if grep -q 'An error occurred' ${LOGS_LOCATION}/awestruct-server-production_log;
     >&2 echo "=> Check the output or the log files located in ${LOGS_LOCATION}"
     exit 1
 fi
-
-
 
 PROCESS_LINE=`docker exec -i ${DOCKER_ID} ps aux | grep puma | grep -v grep`
 
