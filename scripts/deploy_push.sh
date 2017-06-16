@@ -1,7 +1,6 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. ${DIR}/build_prod_and_run.sh
 
 if [[ ${TRAVIS} = "true" ]]; then
     if [[ ${TRAVIS_BRANCH} = "develop" ]]; then
@@ -23,6 +22,6 @@ docker kill arquillian-blog
 docker rm arquillian-blog
 
 echo "=> Pushing generated pages to master..."
-git push origin master
+git --git-dir=$1 push origin master
 echo "=> Changing to branch ${CURRENT_BRANCH}..."
-git checkout ${CURRENT_BRANCH}
+git --git-dir=$1 checkout ${CURRENT_BRANCH}

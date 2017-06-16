@@ -53,4 +53,4 @@ done
 docker exec -i ${DOCKER_ID} kill ${PROCESS_TO_KILL}
 docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/deploy.sh
 
-${SCRIPT_DIR}/deploy.sh
+${SCRIPT_DIR}/deploy_push.sh ${ARQUILLIAN_PROJECT_DIR}

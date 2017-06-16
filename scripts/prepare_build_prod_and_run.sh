@@ -163,9 +163,10 @@ cd arquillian.github.com
 echo \"=========================================\"
 echo 'running awestruct -P production --deploy'
 echo \"=========================================\"
+
 touch ${DOCKER_LOGS_LOCATION}/awestruct-production-deploy_log
 awestruct -P production --deploy 2>&1 | tee ${DOCKER_LOGS_LOCATION}/awestruct-production-deploy_log
-echo 'deployed'
+echo 'Deployed'
 EOF" > ${SCRIPTS_LOCATION}/deploy.sh
 
 chmod +x ${SCRIPTS_LOCATION}/*
