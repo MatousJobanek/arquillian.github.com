@@ -16,9 +16,12 @@ if [[ ${TRAVIS} = "true" ]]; then
 fi
 
 docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/deploy.sh
-docker kill ${DOCKER_ID}
-docker rm ${DOCKER_ID}
+echo "=> Killing and removing arquillian-blog container..."
+docker kill arquillian-blog
+docker rm arquillian-blog
 
+echo "branches"
 git branch
 echo "=> Pushing generated pages to master..."
 git push origin master
+echo "=> Changing to branch ${BRANCH_TO_CLONE}..."

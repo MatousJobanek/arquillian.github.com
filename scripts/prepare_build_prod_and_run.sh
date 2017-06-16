@@ -58,15 +58,15 @@ elif [[ "$CLEAN" = "true" || "$CLEAN" = "yes" ]] ; then
     rm -rf ${WORKING_DIR}/*
 fi
 
-if [[ ${TRAVIS} != "true" ]]; then
-    CURRENT_BRANCH=`git branch | grep \* | cut -d ' ' -f2`
-    LS_REMOTE_BRANCH=`git ls-remote --heads ${GIT_PROJECT} ${CURRENT_BRANCH}`
-    if [ -z "${GITHUB_AUTH}" ]; then
-        BRANCH_TO_CLONE="${CURRENT_BRANCH}"
-    else
-        BRANCH_TO_CLONE="develop"
-    fi
+CURRENT_BRANCH=`git branch | grep \* | cut -d ' ' -f2`
+LS_REMOTE_BRANCH=`git ls-remote --heads ${GIT_PROJECT} ${CURRENT_BRANCH}`
+if [ -z "${GITHUB_AUTH}" ]; then
+    BRANCH_TO_CLONE="${CURRENT_BRANCH}"
+else
+    BRANCH_TO_CLONE="develop"
+fi
 
+if [[ ${TRAVIS} != "true" ]]; then
     ARQUILLIAN_PROJECT_DIR="${WORKING_DIR}/arquillian.github.com"
     if [ ! -d "${ARQUILLIAN_PROJECT_DIR}" ]; then
         echo "=> Cloning branch ${BRANCH_TO_CLONE} from project ${GIT_PROJECT} into ${ARQUILLIAN_PROJECT_DIR}"
@@ -160,9 +160,12 @@ git config --global user.name "Alien Ike"
 echo ${GITHUB_AUTH} > ~/.github-auth
 
 cd arquillian.github.com
+echo \"=========================================\"
 echo 'running awestruct -P production --deploy'
-awestruct -P production --deploy > ${DOCKER_LOGS_LOCATION}/awestruct-production-deploy_log  2>&1
-cat ${DOCKER_LOGS_LOCATION}/awestruct-production-deploy_log
+echo \"=========================================\"
+touch ${DOCKER_LOGS_LOCATION}/awestruct-production-deploy_log
+awestruct -P production --deploy 2>&1 | tee ${DOCKER_LOGS_LOCATION}/awestruct-production-deploy_log
+echo 'deployed'
 EOF" > ${SCRIPTS_LOCATION}/deploy.sh
 
 chmod +x ${SCRIPTS_LOCATION}/*
