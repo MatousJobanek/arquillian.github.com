@@ -97,7 +97,8 @@ if [ ! -d "${SCRIPTS_LOCATION}" ]; then
     mkdir ${SCRIPTS_LOCATION}
 fi
 
-
+AWESTRUCT_DEV_LOG="awestruct-d_log"
+AWESTRUCT_PROD_LOG="awestruct-server-production_log"
 
 ######################### prepare scripts #########################
 
@@ -118,11 +119,10 @@ echo \"======================\"
 echo 'running awestruct -d'
 echo \"======================\"
 
-DOCKER_AWESTRUCT_DEV_LOG=${DOCKER_LOGS_LOCATION}/awestruct-d_log
-touch ${DOCKER_AWESTRUCT_DEV_LOG}
-awestruct -d 2>&1 | tee ${DOCKER_AWESTRUCT_DEV_LOG} &
+touch ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_DEV_LOG}
+awestruct -d 2>&1 | tee ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_DEV_LOG} &
 
-while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_AWESTRUCT_DEV_LOG}; do
+while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_DEV_LOG}; do
     sleep 1
 done
 kill %1
@@ -138,11 +138,10 @@ echo \"=========================================\"
 echo  'running awestruct --server -P production'
 echo \"=========================================\"
 
-DOCKER_AWESTRUCT_PROD_LOG=${DOCKER_LOGS_LOCATION}/awestruct-server-production_log
-touch ${DOCKER_AWESTRUCT_PROD_LOG}
-setsid awestruct --server -P production 2>&1 | tee ${DOCKER_AWESTRUCT_PROD_LOG} &
+touch ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_PROD_LOG}
+setsid awestruct --server -P production 2>&1 | tee ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_PROD_LOG} &
 
-while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_AWESTRUCT_PROD_LOG}; do
+while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_PROD_LOG}; do
     echo -n '='
     sleep 1
 done
@@ -192,7 +191,7 @@ docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/install_bundle.sh
 
 echo "=> Building the pages with dev profile..."
 docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/build_dev.sh
-if grep -q 'An error occurred' ${LOGS_LOCATION}/awestruct-d_log; then
+if grep -q 'An error occurred' ${LOGS_LOCATION}/${AWESTRUCT_DEV_LOG}; then
     >&2 echo "=> There occurred an error when the pages were being generated with the command 'awestruct -d'."
     >&2 echo "=> Check the output or the log files located in ${LOGS_LOCATION}"
     exit 1
@@ -200,7 +199,7 @@ fi
 
 echo "=> Building & running the pages with prod profile..."
 docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/build_prod_and_run.sh
-if grep -q 'An error occurred' ${LOGS_LOCATION}/awestruct-server-production_log; then
+if grep -q 'An error occurred' ${LOGS_LOCATION}/${AWESTRUCT_PROD_LOG}; then
     >&2 echo "=> There occurred an error when the pages were being generated with the command 'running awestruct -P production --deploy'."
     >&2 echo "=> Check the output or the log files located in ${LOGS_LOCATION}"
     exit 1
