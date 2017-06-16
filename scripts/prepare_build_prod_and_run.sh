@@ -58,7 +58,6 @@ elif [[ "$CLEAN" = "true" || "$CLEAN" = "yes" ]] ; then
     rm -rf ${WORKING_DIR}/*
 fi
 
-ARQUILLIAN_PROJECT_DIR="${WORKING_DIR}/arquillian.github.com"
 if [[ ${TRAVIS} != "true" ]]; then
     CURRENT_BRANCH=`git branch | grep \* | cut -d ' ' -f2`
     LS_REMOTE_BRANCH=`git ls-remote --heads ${GIT_PROJECT} ${CURRENT_BRANCH}`
@@ -68,12 +67,16 @@ if [[ ${TRAVIS} != "true" ]]; then
         BRANCH_TO_CLONE="develop"
     fi
 
+    ARQUILLIAN_PROJECT_DIR="${WORKING_DIR}/arquillian.github.com"
     if [ ! -d "${ARQUILLIAN_PROJECT_DIR}" ]; then
         echo "=> Cloning branch ${BRANCH_TO_CLONE} from project ${GIT_PROJECT} into ${ARQUILLIAN_PROJECT_DIR}"
         git clone -b ${BRANCH_TO_CLONE} ${GIT_PROJECT} ${ARQUILLIAN_PROJECT_DIR}
     else
         echo "=> The project arquillian.github.com project will not be cloned because it exist on location: ${ARQUILLIAN_PROJECT_DIR}"
     fi
+else
+    ARQUILLIAN_PROJECT_DIR="${PWD}"
+    echo "=> Travis environment - using project ${ARQUILLIAN_PROJECT_DIR}"
 fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -195,6 +198,9 @@ docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/build_dev.sh
 if grep -q 'An error occurred' ${LOGS_LOCATION}/${AWESTRUCT_DEV_LOG}; then
     >&2 echo "=> There occurred an error when the pages were being generated with the command 'awestruct -d'."
     >&2 echo "=> Check the output or the log files located in ${LOGS_LOCATION}"
+    >&2 echo "=> Killing and removing arquillian-blog container..."
+    docker kill arquillian-blog
+    docker rm arquillian-blog
     exit 1
 fi
 
@@ -203,6 +209,9 @@ docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/build_prod_and_run.sh
 if grep -q 'An error occurred' ${LOGS_LOCATION}/${AWESTRUCT_PROD_LOG}; then
     >&2 echo "=> There occurred an error when the pages were being generated with the command 'running awestruct -P production --deploy'."
     >&2 echo "=> Check the output or the log files located in ${LOGS_LOCATION}"
+    >&2 echo "=> Killing and removing arquillian-blog container..."
+    docker kill arquillian-blog
+    docker rm arquillian-blog
     exit 1
 fi
 
