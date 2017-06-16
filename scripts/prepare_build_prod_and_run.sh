@@ -120,7 +120,7 @@ bash --login <<EOF
 cd arquillian.github.com
 
 echo \"======================\"
-echo 'running awestruct -d'
+echo 'running awestruct -d -w'
 echo \"======================\"
 
 touch ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_DEV_LOG}
@@ -139,7 +139,7 @@ bash --login <<EOF
 cd arquillian.github.com
 
 echo \"=========================================\"
-echo  'running awestruct --server -P production'
+echo  'running awestruct --server -P production -w'
 echo \"=========================================\"
 
 touch ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_PROD_LOG}
