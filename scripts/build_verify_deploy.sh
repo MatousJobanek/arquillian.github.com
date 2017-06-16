@@ -3,7 +3,7 @@
 ######################### Prepare & build & run #########################
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. ${SCRIPT_DIR}/build_prod_and_run.sh
+. ${SCRIPT_DIR}/prepare_build_prod_and_run.sh.sh
 
 IGNORE_MAVEN_FAILURE=${IGNORE_MAVEN_FAILURE:-true}
 BROWSER_COMMAND=${BROWSER_COMMAND:-"firefox"}
