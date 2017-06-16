@@ -17,7 +17,7 @@ if [ -d "arquillian.github.com-tests" ]; then
     rm -rf arquillian.github.com-tests
 fi
 TEST_PROJECT_DIRECTORY=${WORKING_DIR}/arquillian.github.com-tests
-git clone https://github.com/MatousJobanek/arquillian.github.com-tests ${TEST_PROJECT_DIRECTORY}
+git clone git@github.com:MatousJobanek/arquillian.github.com-tests.git ${TEST_PROJECT_DIRECTORY}
 
 #todo use mvnw
 MAVEN_COMMAND="mvn clean verify -f ${TEST_PROJECT_DIRECTORY}/pom.xml -Darquillian.blog.url=http://localhost:4242/ -Dbrowser=${BROWSER_TEST}"
