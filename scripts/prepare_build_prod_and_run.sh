@@ -146,7 +146,6 @@ touch ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_PROD_LOG}
 setsid awestruct --server -P production 2>&1 | tee ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_PROD_LOG} &
 
 while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_LOGS_LOCATION}/${AWESTRUCT_PROD_LOG}; do
-    echo -n '='
     sleep 1
 done
 EOF" > ${SCRIPTS_LOCATION}/build_prod_and_run.sh
