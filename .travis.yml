@@ -17,8 +17,11 @@ branches:
         - /^([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/
 
 install:
-  - ./scripts/prepare_build_prod_and_run.sh.sh --working-dir=$PWD/..
+  - ./scripts/prepare_build_prod_and_run.sh --working-dir=$PWD/..
   - git clone https://github.com/MatousJobanek/arquillian.github.com-tests $HOME/arquillian-blog/arquillian.github.com-tests
 
 script:
   - mvn clean install -f $HOME/arquillian-blog/ -Darquillian.blog.url=http://localhost:4242/ -Dbrowser=phantomjs
+
+deploy:
+  - deploy.sh
