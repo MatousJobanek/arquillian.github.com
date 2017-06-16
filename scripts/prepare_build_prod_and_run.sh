@@ -17,8 +17,16 @@ case $i in
     CLEAN="${i#*=}"
     shift
     ;;
+    -c|--clean)
+    CLEAN="true"
+    shift
+    ;;
     -imf=*|--ignore-maven-failure=*)
     IGNORE_MAVEN_FAILURE="${i#*=}"
+    shift
+    ;;
+    -imf|--ignore-maven-failure)
+    IGNORE_MAVEN_FAILURE="true"
     shift
     ;;
     -bc=*|--browser-command=*)
@@ -43,12 +51,12 @@ echo "=> Working directory is: ${WORKING_DIR}"
 if [ ! -d ${WORKING_DIR} ]; then
     echo "=> Creating the working directory"
     mkdir ${WORKING_DIR}
-elif [[ "$CLEAN" = true || "$CLEAN" = yes ]] ; then
+
+elif [[ "$CLEAN" = "true" || "$CLEAN" = "yes" ]] ; then
     echo "=> cleaning working directory"
     rm -rf ${WORKING_DIR}/*
     rm -rf ${WORKING_DIR}/.*
 fi
-
 
 ARQUILLIAN_PROJECT_DIR="${WORKING_DIR}/arquillian.github.com"
 if [ ! -d "${ARQUILLIAN_PROJECT_DIR}" ]; then
