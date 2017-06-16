@@ -56,7 +56,6 @@ if [ ! -d ${WORKING_DIR} ]; then
 elif [[ "$CLEAN" = "true" || "$CLEAN" = "yes" ]] ; then
     echo "=> cleaning working directory"
     rm -rf ${WORKING_DIR}/*
-    rm -rf ${WORKING_DIR}/.*
 fi
 
 
