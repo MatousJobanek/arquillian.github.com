@@ -15,13 +15,14 @@ if [[ ${TRAVIS} = "true" ]]; then
     fi
 fi
 
-docker exec -it ${DOCKER_ID} ${DOCKER_SCRIPTS_LOCATION}/deploy.sh
+CURRENT_BRANCH=`git branch | grep \* | cut -d ' ' -f2`
+
+docker exec -it arquillian-blog ${DOCKER_SCRIPTS_LOCATION}/deploy.sh
 echo "=> Killing and removing arquillian-blog container..."
 docker kill arquillian-blog
 docker rm arquillian-blog
 
-echo "branches"
-git branch
 echo "=> Pushing generated pages to master..."
 git push origin master
-echo "=> Changing to branch ${BRANCH_TO_CLONE}..."
+echo "=> Changing to branch ${CURRENT_BRANCH}..."
+git checkout ${CURRENT_BRANCH}
