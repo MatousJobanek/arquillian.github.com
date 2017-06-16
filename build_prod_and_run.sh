@@ -15,14 +15,21 @@ case $i in
     ;;
     -c=*|--clean=*)
     CLEAN="${i#*=}"
-    shift # past argument=value
+    shift
     ;;
-    --default)
-    DEFAULT=YES
-    shift # past argument with no value
+    -imf=*|--ignore-maven-failure=*)
+    IGNORE_MAVEN_FAILURE="${i#*=}"
+    shift
+    ;;
+    -bc=*|--browser-command=*)
+    BROWSER_COMMAND="${i#*=}"
+    shift
+    ;;
+    -bt=*|--browser-test=*)
+    BROWSER_TEST="${i#*=}"
+    shift
     ;;
     *)
-            # unknown option
     ;;
 esac
 done
@@ -34,7 +41,12 @@ echo "=> Working directory is: ${WORKING_DIR}"
 if [ ! -d ${WORKING_DIR} ]; then
     echo "=> Creating the working directory"
     mkdir ${WORKING_DIR}
+elif [[ "$CLEAN" = true || "$CLEAN" = yes ]] ; then
+    echo "=> cleaning working directory"
+    rm -rf ${WORKING_DIR}/*
+    rm -rf ${WORKING_DIR}/.*
 fi
+
 
 ARQUILLIAN_PROJECT_DIR="${WORKING_DIR}/arquillian.github.com"
 if [ ! -d "${ARQUILLIAN_PROJECT_DIR}" ]; then
@@ -43,11 +55,10 @@ if [ ! -d "${ARQUILLIAN_PROJECT_DIR}" ]; then
 else
     echo "=> The project arquillian.github.com project will not be cloned because it exist on location: ${ARQUILLIAN_PROJECT_DIR}"
 fi
-ls -l ${ARQUILLIAN_PROJECT_DIR}
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ -z "${GITHUB_AUTH}" ]; then
-    GITHUB_AUTH=`cat ${DIR}/.github-auth`
+    GITHUB_AUTH=`cat ${CURRENT_DIR}/.github-auth`
 fi
 echo "=> Setting .github-auth file"
 echo ${GITHUB_AUTH} > ${ARQUILLIAN_PROJECT_DIR}/.github-auth
@@ -74,8 +85,6 @@ fi
 echo "#!/bin/bash
 bash --login <<EOF
 cd arquillian.github.com
-ls -l .* -d
-ls -l 
 echo 'bundle install -j 10 --path ./.gems'
 bundle install -j 10 --path ./.gems
 EOF" > ${SCRIPTS_LOCATION}/install_bundle.sh
@@ -90,8 +99,7 @@ echo \"======================\"
 echo 'running awestruct -d'
 echo \"======================\"
 
-awestruct -d > ${DOCKER_LOGS_LOCATION}/awestruct-d_log 2>&1 &
-tail -f ${DOCKER_LOGS_LOCATION}/awestruct-d_log &
+awestruct -d 2>&1 | tee ${DOCKER_LOGS_LOCATION}/awestruct-d_log &
 
 while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_LOGS_LOCATION}/awestruct-d_log; do
     sleep 1
@@ -109,8 +117,7 @@ echo \"=========================================\"
 echo  'running awestruct --server -P production'
 echo \"=========================================\"
 
-setsid awestruct --server -P production  > ${DOCKER_LOGS_LOCATION}/awestruct-server-production_log 2>&1 &
-tail -f ${DOCKER_LOGS_LOCATION}/awestruct-d_log &
+setsid awestruct --server -P production 2>&1 | tee ${DOCKER_LOGS_LOCATION}/awestruct-server-production_log &
 
 while ! grep -m1 'Use Ctrl-C to stop' < ${DOCKER_LOGS_LOCATION}/awestruct-server-production_log; do
     echo -n '='
@@ -143,11 +150,12 @@ chmod +x ${SCRIPTS_LOCATION}/*
 
 echo "=> Killing any already running arquillian-blog containers"
 docker kill arquillian-blog
+docker rm arquillian-blog
 
 cd ${ARQUILLIAN_PROJECT_DIR}
 echo "=> Building arquillian-blog image"
 docker build -t arquillian/blog .
-cd ${DIR}
+cd ${CURRENT_DIR}
 
 echo "=> Launching arquillian-blog container... "
 DOCKER_ID=`docker run -d -it --net=host -v ${ARQUILLIAN_PROJECT_DIR}:/home/dev/${ARQUILLIAN_PROJECT_DIR##*/} --name=arquillian-blog -v ${LOGS_LOCATION}:${DOCKER_LOGS_LOCATION} -v ${SCRIPTS_LOCATION}:${DOCKER_SCRIPTS_LOCATION} -p 4242:4242 arquillian/blog`
