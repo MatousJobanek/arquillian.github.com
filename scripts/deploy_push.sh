@@ -22,6 +22,6 @@ docker kill arquillian-blog
 docker rm arquillian-blog
 
 echo "=> Pushing generated pages to master..."
-git --git-dir=$1 push origin master
+git --git-dir=${1}/.git --work-tree=${1} push origin master
 echo "=> Changing to branch ${CURRENT_BRANCH}..."
-git --git-dir=$1 checkout ${CURRENT_BRANCH}
+git --git-dir=${1}/.git --work-tree=${1} checkout ${CURRENT_BRANCH}
