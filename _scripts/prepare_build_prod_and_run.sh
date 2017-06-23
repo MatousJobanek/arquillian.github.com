@@ -6,6 +6,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . ${SCRIPT_DIR}/parse_arguments.sh
 
 id
+cat /etc/passwd
+cat /etc/group
 
 ######################### set variables & clone & create dirs #########################
 
