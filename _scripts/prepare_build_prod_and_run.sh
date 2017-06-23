@@ -97,9 +97,9 @@ AWESTRUCT_PROD_LOG="awestruct-server-production_log"
 echo "#!/bin/bash
 bash --login <<EOF
 cd ${ARQUILLIAN_PROJECT_DIR_NAME}
+ls -l
 echo 'bundle install -j 10 --path ./.gems'
 bundle install -j 10 --path ./.gems
-sudo chown -Rc 1000 ${WORKING_DIR} > /dev/null
 EOF" > ${SCRIPTS_LOCATION}/install_bundle.sh
 
 
@@ -186,15 +186,14 @@ else
     docker pull arquillian/arquillian-org
 fi
 
-if [[ ${TRAVIS} = "true" ]]; then
-    sudo chown -Rc 1000 ${WORKING_DIR} > /dev/null
-    ls -la ${ARQUILLIAN_PROJECT_DIR}
-fi
-
 echo "=> Launching arquillian-org container... "
 DOCKER_ID=`docker run -d -it --net=host -v ${ARQUILLIAN_PROJECT_DIR}:/home/dev/${ARQUILLIAN_PROJECT_DIR##*/} --name=arquillian-org -v ${LOGS_LOCATION}:${DOCKER_LOGS_LOCATION} -v ${SCRIPTS_LOCATION}:${DOCKER_SCRIPTS_LOCATION} -p 4242:4242 arquillian/arquillian-org`
 echo "=> Running container with id ${DOCKER_ID}"
 
+if [[ ${TRAVIS} = "true" ]]; then
+    docker exec -i --user root arquillian-org bash --login <<< "groupadd -g $(id -g) travis"
+    docker exec -i --user root arquillian-org bash --login <<< "usermod -G travis dev"
+fi
 
 ######################### Executing scripts inside of docker image - building & running #########################
 
