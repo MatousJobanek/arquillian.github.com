@@ -73,20 +73,7 @@ fi
 
 ######################### Wait for latest version if pushed to arquillian organization #########################
 
-if [[ ! "${GIT_PROJECT}" =~ .*[\:,\/]arquillian\/arquillian\.github\..* ]]; then
-    echo "=> Tests won't be executed against production because it hasn't been pushed to the arquillian organization"
-    exit 0;
-fi
 
-limit=30
-while `curl http://arquillian.org/last_update.txt` != "${TIMESTAMP}"; do
-    let "limit--"
-    if [[ limit == "0" ]]; then
-        echo "=> the webpages hasn't been updated in last 30 seconds"
-        exit 1
-    fi
-    sleep 1
-done
 
 
 ######################### Verify production #########################

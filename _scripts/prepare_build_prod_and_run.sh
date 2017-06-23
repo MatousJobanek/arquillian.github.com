@@ -220,7 +220,7 @@ fi
 
 if [[ -n "${STORE_CACHE}" ]]; then
     if [[ -d "${STORE_CACHE}" ]]; then
-        rm -rm ${STORE_CACHE}
+        rm -rf ${STORE_CACHE}
     fi
     echo "=> Copying cached _tmp dir from ${ARQUILLIAN_PROJECT_DIR}/_tmp to ${STORE_CACHE} to store"
     cp -fr ${ARQUILLIAN_PROJECT_DIR}/_tmp ${STORE_CACHE}
@@ -228,7 +228,7 @@ fi
 
 if [[ -n "${GEMS_CACHE}" ]]; then
     if [[ -d "${GEMS_CACHE}" ]]; then
-        rm -rm ${GEMS_CACHE}
+        rm -rf ${GEMS_CACHE}
     fi
     echo "=> Copying cached _tmp dir from ${ARQUILLIAN_PROJECT_DIR}/.gems to ${GEMS_CACHE} to store"
     cp -fr ${ARQUILLIAN_PROJECT_DIR}/.gems ${GEMS_CACHE}
