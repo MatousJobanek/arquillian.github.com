@@ -36,33 +36,41 @@ git ${VARIABLE_TO_SET_GH_PATH} checkout ${CURRENT_BRANCH}
 echo "=> Running deploy script"
 docker exec -it arquillian-org ${DOCKER_SCRIPTS_LOCATION}/deploy.sh
 
-sleep 10
-
-echo "--"
-git ${VARIABLE_TO_SET_GH_PATH} branch
-echo "--"
-git ${VARIABLE_TO_SET_GH_PATH} status
-echo "--"
-git ${VARIABLE_TO_SET_GH_PATH} checkout master
-echo "--"
-git ${VARIABLE_TO_SET_GH_PATH} log --pretty=oneline -10
 
 
-echo "=> Killing and removing arquillian-org container..."
-docker kill arquillian-org
-docker rm arquillian-org
+
 
 echo "=> creating timestamp"
 TIMESTAMP=`date --rfc-3339=seconds`
+echo "#!/bin/bash
+bash --login <<EOF
+
+cd ${ARQUILLIAN_PROJECT_DIR_NAME}
+
 echo ${TIMESTAMP} > ${ARQUILLIAN_PROJECT_DIR}/last_update.txt
-git ${VARIABLE_TO_SET_GH_PATH} add ${ARQUILLIAN_PROJECT_DIR}/last_update.txt
-git ${VARIABLE_TO_SET_GH_PATH} commit -m "Changed last update timestamp"
+git add ${ARQUILLIAN_PROJECT_DIR}/last_update.txt
+git commit -m "Changed last update timestamp"
 
 echo "=> Pushing generated pages to master..."
 git ${VARIABLE_TO_SET_GH_PATH} push ${GH_AUTH_REF} master
 
 echo "=> Changing to branch ${CURRENT_BRANCH}..."
 git ${VARIABLE_TO_SET_GH_PATH} checkout ${CURRENT_BRANCH}
+
+EOF" > ${SCRIPTS_LOCATION}/timestamp.sh
+chmod +x ${SCRIPTS_LOCATION}/*
+
+docker exec -it arquillian-org ${DOCKER_SCRIPTS_LOCATION}/timestamp.sh
+
+
+
+
+
+echo "=> Killing and removing arquillian-org container..."
+docker kill arquillian-org
+docker rm arquillian-org
+
+
 
 NEW_COMMIT=`git ls-remote ${GIT_PROJECT} master | awk '{print $1;}'`
 if [[ "${NEW_COMMIT}" = "${LAST_COMMIT}" ]]; then
