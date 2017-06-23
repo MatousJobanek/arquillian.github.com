@@ -10,17 +10,6 @@ WORKING_DIR=${1}
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [[ ${TRAVIS} = "true" ]]; then
-    if [[ ${TRAVIS_BRANCH} = "develop" ]]; then
-        if [[ ${TRAVIS_PULL_REQUEST} != "false" ]]; then
-            echo "=> The pages won't be deployed - it is a build for pull request"
-            exit 0;
-        fi
-    else
-        echo "=> The pages won't be deployed - the targeted branch is not \"develop\""
-        exit 0;
-    fi
-fi
 
 VARIABLE_TO_SET_GH_PATH="--git-dir=${ARQUILLIAN_PROJECT_DIR}/.git --work-tree=${ARQUILLIAN_PROJECT_DIR}"
 GH_AUTH_REF=`git ${VARIABLE_TO_SET_GH_PATH} remote get-url origin | awk "{sub(/https:\/\//,\"https://${GITHUB_AUTH}@\")}; 1" | awk "{sub(/\.git$/, \"\")} 1"`
@@ -46,6 +35,18 @@ git ${VARIABLE_TO_SET_GH_PATH} checkout ${CURRENT_BRANCH}
 
 echo "=> Running deploy script"
 docker exec -it arquillian-org ${DOCKER_SCRIPTS_LOCATION}/deploy.sh
+
+sleep 10
+
+echo "--"
+git ${VARIABLE_TO_SET_GH_PATH} branch
+echo "--"
+git ${VARIABLE_TO_SET_GH_PATH} status
+echo "--"
+git ${VARIABLE_TO_SET_GH_PATH} checkout master
+echo "--"
+git ${VARIABLE_TO_SET_GH_PATH} log --pretty=oneline -10
+
 
 echo "=> Killing and removing arquillian-org container..."
 docker kill arquillian-org
