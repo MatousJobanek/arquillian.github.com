@@ -182,7 +182,7 @@ else
 fi
 
 if [[ ${TRAVIS} = "true" ]]; then
-    sudo chown -R 1000 ${WORKING_DIR}
+    sudo chown -Rc 1000 ${WORKING_DIR}
     ls -la ${ARQUILLIAN_PROJECT_DIR}
 fi
 
