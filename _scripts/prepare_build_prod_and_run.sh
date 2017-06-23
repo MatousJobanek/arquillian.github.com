@@ -98,6 +98,7 @@ echo "#!/bin/bash
 bash --login <<EOF
 cd ${ARQUILLIAN_PROJECT_DIR_NAME}
 ls -l
+id
 echo 'bundle install -j 10 --path ./.gems'
 bundle install -j 10 --path ./.gems
 EOF" > ${SCRIPTS_LOCATION}/install_bundle.sh
