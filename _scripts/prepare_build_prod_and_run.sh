@@ -5,6 +5,8 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . ${SCRIPT_DIR}/parse_arguments.sh
 
+id
+
 ######################### set variables & clone & create dirs #########################
 
 WORKING_DIR=`readlink -f ${WORKING_DIR:-/tmp/arquillian-blog}`
@@ -95,6 +97,7 @@ bash --login <<EOF
 cd ${ARQUILLIAN_PROJECT_DIR_NAME}
 echo 'bundle install -j 10 --path ./.gems'
 bundle install -j 10 --path ./.gems
+sudo chown -Rc 1000 ${WORKING_DIR} > /dev/null
 EOF" > ${SCRIPTS_LOCATION}/install_bundle.sh
 
 
