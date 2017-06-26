@@ -47,8 +47,8 @@ bash --login <<EOF
 
 cd ${ARQUILLIAN_PROJECT_DIR_NAME}
 
-echo ${TIMESTAMP} > ${ARQUILLIAN_PROJECT_DIR}/last_update.txt
-git add ${ARQUILLIAN_PROJECT_DIR}/last_update.txt
+echo ${TIMESTAMP} > ./last_update.txt
+git add ./last_update.txt
 git commit -m "Changed last update timestamp"
 
 echo "=> Pushing generated pages to master..."
