@@ -47,6 +47,7 @@ bash --login <<EOF
 
 cd ${ARQUILLIAN_PROJECT_DIR_NAME}
 
+touch ${PWD}/last_update.txt
 ls
 echo \"echo ${TIMESTAMP} > ${PWD}/last_update.txt\"
 echo \"${TIMESTAMP}\" > ${PWD}/last_update.txt
