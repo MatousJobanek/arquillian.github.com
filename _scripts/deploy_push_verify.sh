@@ -95,6 +95,10 @@ echo "
 export ARQUILLIAN_BLOG_TEST_URL=http://arquillian.org/
 " >> ${WORKING_DIR}/variables
 
+pwd
+ls
+
+
 ${SCRIPT_DIR}/verify.sh ${WORKING_DIR}
 
 exit $?
