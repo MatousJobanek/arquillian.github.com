@@ -643,27 +643,6 @@
           &lt;a class=&quot;artifact&quot; href=&quot;http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-browserstack-extension/2.2.0/arquillian-drone-browserstack-extension-2.2.0.pom&quot; target=&quot;_blank&quot;&gt;pom&lt;/a&gt;
         &lt;/li&gt;
       &lt;/ul&gt;
-      &lt;h3&gt;
-        Release notes and resolved issues
-        &lt;small&gt;2&lt;/small&gt;
-      &lt;/h3&gt;
-      &lt;p&gt;&lt;/p&gt;
-      &lt;dl&gt;
-        &lt;dt&gt;Enhancement&lt;/dt&gt;
-        &lt;dd&gt;
-          &lt;ul class=&quot;unstyled&quot;&gt;
-            &lt;li&gt;&lt;a href=&quot;https://issues.jboss.org/browse/ARQ-2122&quot;&gt;ARQ-2122&lt;/a&gt; -         Add chromeHeadless browser option to use headless chromium easily&lt;/li&gt;
-          &lt;/ul&gt;
-        &lt;/dd&gt;
-      &lt;/dl&gt;
-      &lt;dl&gt;
-        &lt;dt&gt;Feature Request&lt;/dt&gt;
-        &lt;dd&gt;
-          &lt;ul class=&quot;unstyled&quot;&gt;
-            &lt;li&gt;&lt;a href=&quot;https://issues.jboss.org/browse/ARQ-2119&quot;&gt;ARQ-2119&lt;/a&gt; -         Allow skipping creation of Drone instances&lt;/li&gt;
-          &lt;/ul&gt;
-        &lt;/dd&gt;
-      &lt;/dl&gt;
       &lt;p&gt;
         Thanks to the following list of contributors:
         &lt;a href=&quot;http://arquillian.org/community/matousjobanek&quot;&gt;Matous Jobanek&lt;/a&gt;, &lt;a href=&quot;http://arquillian.org/community/hemanik&quot;&gt;Hemanik&lt;/a&gt;
@@ -994,11 +973,6 @@
           &lt;a class=&quot;artifact&quot; href=&quot;http://repo1.maven.org/maven2/org/arquillian/spacelift/arquillian-spacelift/1.0.2/arquillian-spacelift-1.0.2.pom&quot; target=&quot;_blank&quot;&gt;pom&lt;/a&gt;
         &lt;/li&gt;
       &lt;/ul&gt;
-      &lt;h3&gt;
-        Release notes and resolved issues
-        &lt;small&gt;0&lt;/small&gt;
-      &lt;/h3&gt;
-      &lt;p&gt;&lt;/p&gt;
       &lt;p&gt;
         Thanks to the following list of contributors:
         &lt;a href=&quot;http://arquillian.org/community/matousjobanek&quot;&gt;Matous Jobanek&lt;/a&gt;,
@@ -2140,11 +2114,6 @@
           &lt;a class=&quot;artifact&quot; href=&quot;http://repo1.maven.org/maven2/org/arquillian/spacelift/arquillian-spacelift/1.0.1/arquillian-spacelift-1.0.1.pom&quot; target=&quot;_blank&quot;&gt;pom&lt;/a&gt;
         &lt;/li&gt;
       &lt;/ul&gt;
-      &lt;h3&gt;
-        Release notes and resolved issues
-        &lt;small&gt;0&lt;/small&gt;
-      &lt;/h3&gt;
-      &lt;p&gt;&lt;/p&gt;
       &lt;p&gt;
         Thanks to the following list of contributors:
         &lt;a href=&quot;http://arquillian.org/community/matousjobanek&quot;&gt;Matous Jobanek&lt;/a&gt;, &lt;a href=&quot;http://arquillian.org/community/bartoszmajsak&quot;&gt;Bartosz Majsak&lt;/a&gt;
@@ -5719,11 +5688,6 @@
           &lt;a class=&quot;artifact&quot; href=&quot;http://repo1.maven.org/maven2/org/arquillian/spacelift/arquillian-spacelift/1.0.0/arquillian-spacelift-1.0.0.pom&quot; target=&quot;_blank&quot;&gt;pom&lt;/a&gt;
         &lt;/li&gt;
       &lt;/ul&gt;
-      &lt;h3&gt;
-        Release notes and resolved issues
-        &lt;small&gt;0&lt;/small&gt;
-      &lt;/h3&gt;
-      &lt;p&gt;&lt;/p&gt;
       &lt;p&gt;
         Thanks to the following list of contributors:
         &lt;a href=&quot;http://arquillian.org/community/bartoszmajsak&quot;&gt;Bartosz Majsak&lt;/a&gt;, &lt;a href=&quot;http://arquillian.org/community/kpiwko&quot;&gt;Karel Piwko&lt;/a&gt;
