@@ -48,14 +48,14 @@ bash --login <<EOF
 cd ${ARQUILLIAN_PROJECT_DIR_NAME}
 
 echo ${TIMESTAMP} > ./last_update.txt
-git add ./last_update.txt
+git add \"./last_update.txt\"
 git commit -m "Changed last update timestamp"
 
 echo "=> Pushing generated pages to master..."
-git ${VARIABLE_TO_SET_GH_PATH} push ${GH_AUTH_REF} master
+git push ${GH_AUTH_REF} master
 
 echo "=> Changing to branch ${CURRENT_BRANCH}..."
-git ${VARIABLE_TO_SET_GH_PATH} checkout ${CURRENT_BRANCH}
+git checkout ${CURRENT_BRANCH}
 
 EOF" > ${SCRIPTS_LOCATION}/timestamp.sh
 chmod +x ${SCRIPTS_LOCATION}/*
