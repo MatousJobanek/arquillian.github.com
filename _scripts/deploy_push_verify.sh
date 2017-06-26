@@ -59,7 +59,7 @@ git commit -m 'Changed last update timestamp'
 echo '=> Pushing generated pages to master...'
 git push ${GH_AUTH_REF} master
 
-echo "=> Changing to branch ${CURRENT_BRANCH}..."
+echo \"=> Changing to branch ${CURRENT_BRANCH}...\"
 git checkout ${CURRENT_BRANCH}
 
 EOF" > ${SCRIPTS_LOCATION}/timestamp.sh
