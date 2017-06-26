@@ -49,10 +49,10 @@ cd ${ARQUILLIAN_PROJECT_DIR_NAME}
 
 ls
 echo \"echo ${TIMESTAMP} > ${PWD}/last_update.txt\"
-echo ${TIMESTAMP} > ${PWD}/last_update.txt
+echo \"${TIMESTAMP}\" > ${PWD}/last_update.txt
 ls
 git add ${PWD}/last_update.txt
-git st
+git status
 git commit -m "Changed last update timestamp"
 
 echo "=> Pushing generated pages to master..."
