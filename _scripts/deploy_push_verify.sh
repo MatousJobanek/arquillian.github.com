@@ -54,9 +54,9 @@ echo \"${TIMESTAMP}\" > `pwd`/last_update.txt
 ls
 git add `pwd`/last_update.txt
 git status
-git commit -m "Changed last update timestamp"
+git commit -m 'Changed last update timestamp'
 
-echo "=> Pushing generated pages to master..."
+echo '=> Pushing generated pages to master...'
 git push ${GH_AUTH_REF} master
 
 echo "=> Changing to branch ${CURRENT_BRANCH}..."
