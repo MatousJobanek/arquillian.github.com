@@ -47,12 +47,12 @@ bash --login <<EOF
 
 cd ${ARQUILLIAN_PROJECT_DIR_NAME}
 
-touch `pwd`/last_update.txt
+touch ./last_update.txt
 ls
-echo \"echo ${TIMESTAMP} > `pwd`/last_update.txt\"
-echo \"${TIMESTAMP}\" > `pwd`/last_update.txt
+echo \"echo ${TIMESTAMP} > ./last_update.txt\"
+echo \"${TIMESTAMP}\" > ./last_update.txt
 ls
-git add `pwd`/last_update.txt
+git add ./last_update.txt
 git status
 git commit -m 'Changed last update timestamp'
 
