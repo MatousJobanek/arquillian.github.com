@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="An innovative testing platform for the Java Virtual Machine (JVM). Open source. Highly extensible." name="description">
     <link href="/blog/atom.xml" rel="alternate" title="Arquillian blog Atom feed" type="application/atom+xml">
-    <link href="/stylesheets/screen.css?77c499754d81f1987fe5a88964d17dfdb59bd0bb" rel="stylesheet">
+    <link href="/stylesheets/screen.css?77e5d1c603454eaa1ed10eec4de20359ad2f2cdf" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js"></script>
@@ -56,22 +56,33 @@
           <article class="post">
             <header class="header">
               <h2 class="title">
-                <a href="/blog/2014/05/27/arquillian-extension-drone-1-3-1-Final/">Arquillian Drone Extension 1.3.1.Final Released</a>
+                <a href="/blog/2016/04/04/arquillian-extension-drone-2-0-0-CR1/">Arquillian Drone Extension 2.0.0.CR1 Released</a>
               </h2>
               <div class="byline">
-                <a href="/community/kpiwko">
-                  <img class="avatar" height="44" src="https://avatars.githubusercontent.com/u/355881?s=44" width="44" />
+                <a href="/community/matousjobanek">
+                  <img class="avatar" height="44" src="https://avatars.githubusercontent.com/u/1510709?s=44" width="44" />
                 </a>
                 <span class="author">Posted by
-                <a href="/community/kpiwko">Karel Piwko</a></span>
-                <span class="dateinline">on May 27, 2014</span>
-                <div class="date"><abbr>May</abbr> 27</div>
-                <span class="comments">| <a href="http://arquillian.org/blog/2014/05/27/arquillian-extension-drone-1-3-1-Final/#disqus_thread" data-disqus-identifier="1eb3aa6038b630cf5e08fd5459df555762ecf3f5">Comments</a></span>
+                <a href="/community/matousjobanek">Matous Jobanek</a></span>
+                <span class="dateinline">on Apr 04, 2016</span>
+                <div class="date"><abbr>Apr</abbr> 04</div>
+                <span class="comments">| <a href="http://arquillian.org/blog/2016/04/04/arquillian-extension-drone-2-0-0-CR1/#disqus_thread" data-disqus-identifier="b1df29848f04ff95c9838c70c8f299e2108e0ab1">Comments</a></span>
               </div>
             </header>
             <div class="body">
-              <p>The Arquillian team is proud to announce the <em>1.3.1.Final</em> release of the <em>Arquillian Drone Extension</em> component!</p>
-              
+              <p>The Arquillian team is proud to announce the <em>2.0.0.CR1</em> release of the <em>Arquillian Drone Extension</em> component!</p>
+              <p><img src="/images/blog/drone_400.png" class="graphic pull-right" alt="" /></p>
+              <p>In this release, there has been added support for two cloud-based browser/mobile automated testing solutions:</p>
+              <p><i class="icon-star"></i> BrowserStack<br />
+              <i class="icon-star"></i> Sauce Labs</p>
+              <p>Both implementations have been added as additional Arquillian Drone extensions. They are not included in the arquillian-drone-webdriver-depchain, so you need to explicitly specify the dependencies (but their versions are managed by Arquillian Drone Bom):</p>
+              <p>For BrowserStack</p>
+              <pre class="prettify"><code class="prettify">&lt;dependency&gt;&#x000A;    &lt;groupId&gt;org.jboss.arquillian.extension&lt;/groupId&gt;&#x000A;    &lt;artifactId&gt;arquillian-drone-browserstack-extension&lt;/artifactId&gt;&#x000A;    &lt;version&gt;2.0.0.CR1&lt;/version&gt;&#x000A;&lt;/dependency&gt;</code></pre>
+              <p>For Sauce Labs</p>
+              <pre class="prettify"><code class="prettify">&lt;dependency&gt;&#x000A;    &lt;groupId&gt;org.jboss.arquillian.extension&lt;/groupId&gt;&#x000A;    &lt;artifactId&gt;arquillian-drone-saucelabs-webdriver&lt;/artifactId&gt;&#x000A;    &lt;version&gt;2.0.0.CR1&lt;/version&gt;&#x000A;&lt;/dependency&gt;</code></pre>
+              <p>Both extensions behave as a standard WebDriver, so you can easily integrate them into your existing test suites. You just have to specify some necessary parameters there in your arquillian descriptor such as username, access.key and the combination of the testing platform and browser. <br />
+              Both extensions supports also local testing and running appropriate binary when needed and required.<br />
+              For more information see the <a href="https://github.com/arquillian/arquillian-extension-drone/tree/master/extension/arquillian-drone-browserstack-extension">BrowserStack README</a> and <a href="https://github.com/arquillian/arquillian-extension-drone/tree/master/extension/arquillian-drone-saucelabs-extension">SauceLabs README</a></p>
               <h3>What is Arquillian?</h3>
               <p>Arquillian is open source software that empowers you to test JVM-based applications more effectively. Created to defend the software galaxy from bugs, Arquillian brings your test to the runtime so you can focus on testing your application's behavior rather than managing the runtime. Using Arquillian, you can develop a comprehensive suite of tests from the convenience of your IDE and run them in any IDE, build tool or continuous integration environment.</p>
               <h3>Release details</h3>
@@ -86,19 +97,19 @@
                   <tr>
                     <th>Version</th>
                     <td>
-                      1.3.1.Final
+                      2.0.0.CR1
                       <span class="label tag">
-                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/55b0c3dfbc0fad9af8d636c1df269ab5a4bf1f82.html">view tag</a>
+                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/df100f44a28dc8547be2f0921e10e17005452c7f.html">view tag</a>
                       </span>
                     </td>
                   </tr>
                   <tr>
                     <th>Release date</th>
-                    <td>2014-05-27</td>
+                    <td>2016-03-24</td>
                   </tr>
                   <tr>
                     <th>Released by</th>
-                    <td>Karel Piwko</td>
+                    <td>Matous Jobanek</td>
                   </tr>
                   <tr>
                     <th>Compiled against</th>
@@ -107,9 +118,9 @@
                         <li>
                           <a href="/modules/core-platform/">Arquillian Core</a>
                           &#8211;
-                          <a href="/blog/2014/03/30/arquillian-core-1-1-4-Final/">1.1.4.Final</a>
+                          <a href="/blog/2016/01/28/arquillian-core-1-1-11-Final/">1.1.11.Final</a>
                         </li>
-                        <li>Selenium &#8211; 2.42.0</li>
+                        <li>Selenium &#8211; 2.53.0</li>
                       </ul>
                     </td>
                   </tr>
@@ -124,131 +135,160 @@
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-bom
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/1.3.1.Final/arquillian-drone-bom-1.3.1.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-selenium-depchain
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-depchain/1.3.1.Final/arquillian-drone-selenium-depchain-1.3.1.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/2.0.0.CR1/arquillian-drone-bom-2.0.0.CR1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-webdriver-depchain
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/1.3.1.Final/arquillian-drone-webdriver-depchain-1.3.1.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/2.0.0.CR1/arquillian-drone-webdriver-depchain-2.0.0.CR1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-api
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/1.3.1.Final/arquillian-drone-api-1.3.1.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/1.3.1.Final/arquillian-drone-api-1.3.1.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/1.3.1.Final/arquillian-drone-api-1.3.1.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.CR1/arquillian-drone-api-2.0.0.CR1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.CR1/arquillian-drone-api-2.0.0.CR1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.CR1/arquillian-drone-api-2.0.0.CR1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-spi
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/1.3.1.Final/arquillian-drone-spi-1.3.1.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/1.3.1.Final/arquillian-drone-spi-1.3.1.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/1.3.1.Final/arquillian-drone-spi-1.3.1.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.CR1/arquillian-drone-spi-2.0.0.CR1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.CR1/arquillian-drone-spi-2.0.0.CR1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.CR1/arquillian-drone-spi-2.0.0.CR1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-configuration
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/1.3.1.Final/arquillian-drone-configuration-1.3.1.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/1.3.1.Final/arquillian-drone-configuration-1.3.1.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/1.3.1.Final/arquillian-drone-configuration-1.3.1.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.CR1/arquillian-drone-configuration-2.0.0.CR1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.CR1/arquillian-drone-configuration-2.0.0.CR1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.CR1/arquillian-drone-configuration-2.0.0.CR1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-impl
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/1.3.1.Final/arquillian-drone-impl-1.3.1.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/1.3.1.Final/arquillian-drone-impl-1.3.1.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/1.3.1.Final/arquillian-drone-impl-1.3.1.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.CR1/arquillian-drone-impl-2.0.0.CR1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.CR1/arquillian-drone-impl-2.0.0.CR1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.CR1/arquillian-drone-impl-2.0.0.CR1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-selenium-server
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/1.3.1.Final/arquillian-drone-selenium-server-1.3.1.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/1.3.1.Final/arquillian-drone-selenium-server-1.3.1.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/1.3.1.Final/arquillian-drone-selenium-server-1.3.1.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-selenium
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium/1.3.1.Final/arquillian-drone-selenium-1.3.1.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium/1.3.1.Final/arquillian-drone-selenium-1.3.1.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium/1.3.1.Final/arquillian-drone-selenium-1.3.1.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.CR1/arquillian-drone-selenium-server-2.0.0.CR1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.CR1/arquillian-drone-selenium-server-2.0.0.CR1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.CR1/arquillian-drone-selenium-server-2.0.0.CR1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-webdriver
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/1.3.1.Final/arquillian-drone-webdriver-1.3.1.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/1.3.1.Final/arquillian-drone-webdriver-1.3.1.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/1.3.1.Final/arquillian-drone-webdriver-1.3.1.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.CR1/arquillian-drone-webdriver-2.0.0.CR1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.CR1/arquillian-drone-webdriver-2.0.0.CR1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.CR1/arquillian-drone-webdriver-2.0.0.CR1.pom" target="_blank">pom</a>
+                </li>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-saucelabs-extension
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-saucelabs-extension/2.0.0.CR1/arquillian-drone-saucelabs-extension-2.0.0.CR1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-saucelabs-extension/2.0.0.CR1/arquillian-drone-saucelabs-extension-2.0.0.CR1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-saucelabs-extension/2.0.0.CR1/arquillian-drone-saucelabs-extension-2.0.0.CR1.pom" target="_blank">pom</a>
+                </li>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-browserstack-extension
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-browserstack-extension/2.0.0.CR1/arquillian-drone-browserstack-extension-2.0.0.CR1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-browserstack-extension/2.0.0.CR1/arquillian-drone-browserstack-extension-2.0.0.CR1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-browserstack-extension/2.0.0.CR1/arquillian-drone-browserstack-extension-2.0.0.CR1.pom" target="_blank">pom</a>
                 </li>
               </ul>
               <h3>
                 Release notes and resolved issues
                 <small>3</small>
               </h3>
-              <p>Selenium BOM update to 2.42.0</p>
+              <p></p>
               <dl>
                 <dt>Component Upgrade</dt>
                 <dd>
                   <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1783">ARQ-1783</a> -         Update Arquillian Core to 1.1.4.Final</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-2024">ARQ-2024</a> -         Update Selenium &amp; phantom-driver &amp; additional components to the latest versions</li>
                   </ul>
                 </dd>
               </dl>
               <dl>
-                <dt>Enhancement</dt>
+                <dt>Feature Request</dt>
                 <dd>
                   <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1784">ARQ-1784</a> -         Remove obsolote documentation</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1785">ARQ-1785</a> -         Update Selenium to 2.42.0</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-2025">ARQ-2025</a> -         Create BrowserStack extension</li>
+                  </ul>
+                </dd>
+              </dl>
+              <dl>
+                <dt>Task</dt>
+                <dd>
+                  <ul class="unstyled">
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1694">ARQ-1694</a> -         Update Saucelabs extension</li>
                   </ul>
                 </dd>
               </dl>
               <p>
                 Thanks to the following list of contributors:
-                <a href="/community/kpiwko">Karel Piwko</a>
+                <a href="/community/matousjobanek">Matous Jobanek</a>
               </p>
             </div>
             <div class="footer">
-              <a href="/blog/2014/05/27/arquillian-extension-drone-1-3-1-Final/">permalink</a>
+              <a href="/blog/2016/04/04/arquillian-extension-drone-2-0-0-CR1/">permalink</a>
               |
               <i class="icon-tags"></i>
               tagged as
-              <a class="tag" href="/blog/tags/release/">release</a> <a class="tag" href="/blog/tags/extension/">extension</a> <a class="tag" href="/blog/tags/drone/">drone</a> <a class="tag" href="/blog/tags/jbosscentral/">jbosscentral</a>
+              <a class="tag" href="/blog/tags/release/">release</a> <a class="tag" href="/blog/tags/extension/">extension</a> <a class="tag" href="/blog/tags/drone/">drone</a>
             </div>
           </article>
           <article class="post">
             <header class="header">
               <h2 class="title">
-                <a href="/blog/2014/05/12/arquillian-extension-drone-2-0-0-Alpha2/">Arquillian Drone Extension 2.0.0.Alpha2 Released</a>
+                <a href="/blog/2016/02/04/arquillian-extension-drone-2-0-0-Beta1/">Arquillian Drone Extension 2.0.0.Beta1 Released</a>
               </h2>
               <div class="byline">
-                <a href="/community/kpiwko">
-                  <img class="avatar" height="44" src="https://avatars.githubusercontent.com/u/355881?s=44" width="44" />
+                <a href="/community/matousjobanek">
+                  <img class="avatar" height="44" src="https://avatars.githubusercontent.com/u/1510709?s=44" width="44" />
                 </a>
                 <span class="author">Posted by
-                <a href="/community/kpiwko">Karel Piwko</a></span>
-                <span class="dateinline">on May 12, 2014</span>
-                <div class="date"><abbr>May</abbr> 12</div>
-                <span class="comments">| <a href="http://arquillian.org/blog/2014/05/12/arquillian-extension-drone-2-0-0-Alpha2/#disqus_thread" data-disqus-identifier="1e53bf871b24f341dcc76f354e066a2ef8a4bdf6">Comments</a></span>
+                <a href="/community/matousjobanek">Matous Jobanek</a></span>
+                <span class="dateinline">on Feb 04, 2016</span>
+                <div class="date"><abbr>Feb</abbr> 04</div>
+                <span class="comments">| <a href="http://arquillian.org/blog/2016/02/04/arquillian-extension-drone-2-0-0-Beta1/#disqus_thread" data-disqus-identifier="8c69817f1487b1cd156d4fd8e153c204d8ef01e0">Comments</a></span>
               </div>
             </header>
             <div class="body">
-              <p>The Arquillian team is proud to announce the <em>2.0.0.Alpha2</em> release of the <em>Arquillian Drone Extension</em> component!</p>
-              
+              <p>The Arquillian team is proud to announce the <em>2.0.0.Beta1</em> release of the <em>Arquillian Drone Extension</em> component!</p>
+              <p><img src="/images/blog/drone_400.png" class="graphic pull-right" alt="" /></p>
+              <p>This release is (hopefully) the last step before the final release of the second generation of the Arquillian Drone extension.</p>
+              <h3>Significant changes and additions</h3>
+              <p><i class="icon-star"></i> Support for Drone webdriver injection in <code>@BeforeClass</code></p>
+              <p><i class="icon-star"></i> Drones with a deployment scoped life cycle are now more tightly connected to the deployment &#8211; it&#8217;s creation has been postponed to the <code>@AfterDeploy</code> phase</p>
+              <dl>
+              	<dt><i class="icon-star"></i> Some SPI event have been merged/replaced</dt>
+              	<dd><p>The following events:</p>
+              <ul>
+              	<li>BeforeDroneCallableCreated</li>
+              	<li>AfterDroneConfigured</li>
+              	<li>BeforeDroneConfigured</li>
+              	<li>AfterDroneCallableCreated</li>
+              </ul>
+              <p>are now merged into:</p>
+              <ul>
+              	<li>BeforeDronePrepared</li>
+              	<li>AfterDronePrepared</li>
+              </ul>
+              <p>They are called before/after both the Drone configuration and the Drone callable instance are prepared. This ensures that both or none of the objects should be present.</p></dd>
+              </dl>
               <h3>What is Arquillian?</h3>
               <p>Arquillian is open source software that empowers you to test JVM-based applications more effectively. Created to defend the software galaxy from bugs, Arquillian brings your test to the runtime so you can focus on testing your application's behavior rather than managing the runtime. Using Arquillian, you can develop a comprehensive suite of tests from the convenience of your IDE and run them in any IDE, build tool or continuous integration environment.</p>
               <h3>Release details</h3>
@@ -263,19 +303,19 @@
                   <tr>
                     <th>Version</th>
                     <td>
-                      2.0.0.Alpha2
+                      2.0.0.Beta1
                       <span class="label tag">
-                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/16cfddd4055b0f547cd248a34513396cddfc75f4.html">view tag</a>
+                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/6314f12d975eeb7f6615be911a2a4fd7b3865221.html">view tag</a>
                       </span>
                     </td>
                   </tr>
                   <tr>
                     <th>Release date</th>
-                    <td>2014-05-12</td>
+                    <td>2016-02-02</td>
                   </tr>
                   <tr>
                     <th>Released by</th>
-                    <td>Karel Piwko</td>
+                    <td>Matous Jobanek</td>
                   </tr>
                   <tr>
                     <th>Compiled against</th>
@@ -284,9 +324,9 @@
                         <li>
                           <a href="/modules/core-platform/">Arquillian Core</a>
                           &#8211;
-                          <a href="/blog/2014/03/30/arquillian-core-1-1-4-Final/">1.1.4.Final</a>
+                          <a href="/blog/2016/01/28/arquillian-core-1-1-11-Final/">1.1.11.Final</a>
                         </li>
-                        <li>Selenium &#8211; 2.41.0</li>
+                        <li>Selenium &#8211; 2.50.1</li>
                       </ul>
                     </td>
                   </tr>
@@ -301,61 +341,61 @@
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-bom
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/2.0.0.Alpha2/arquillian-drone-bom-2.0.0.Alpha2.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/2.0.0.Beta1/arquillian-drone-bom-2.0.0.Beta1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-webdriver-depchain
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/2.0.0.Alpha2/arquillian-drone-webdriver-depchain-2.0.0.Alpha2.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/2.0.0.Beta1/arquillian-drone-webdriver-depchain-2.0.0.Beta1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-api
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha2/arquillian-drone-api-2.0.0.Alpha2.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha2/arquillian-drone-api-2.0.0.Alpha2-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha2/arquillian-drone-api-2.0.0.Alpha2.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Beta1/arquillian-drone-api-2.0.0.Beta1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Beta1/arquillian-drone-api-2.0.0.Beta1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Beta1/arquillian-drone-api-2.0.0.Beta1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-spi
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha2/arquillian-drone-spi-2.0.0.Alpha2.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha2/arquillian-drone-spi-2.0.0.Alpha2-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha2/arquillian-drone-spi-2.0.0.Alpha2.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Beta1/arquillian-drone-spi-2.0.0.Beta1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Beta1/arquillian-drone-spi-2.0.0.Beta1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Beta1/arquillian-drone-spi-2.0.0.Beta1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-configuration
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha2/arquillian-drone-configuration-2.0.0.Alpha2.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha2/arquillian-drone-configuration-2.0.0.Alpha2-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha2/arquillian-drone-configuration-2.0.0.Alpha2.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Beta1/arquillian-drone-configuration-2.0.0.Beta1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Beta1/arquillian-drone-configuration-2.0.0.Beta1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Beta1/arquillian-drone-configuration-2.0.0.Beta1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-impl
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha2/arquillian-drone-impl-2.0.0.Alpha2.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha2/arquillian-drone-impl-2.0.0.Alpha2-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha2/arquillian-drone-impl-2.0.0.Alpha2.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Beta1/arquillian-drone-impl-2.0.0.Beta1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Beta1/arquillian-drone-impl-2.0.0.Beta1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Beta1/arquillian-drone-impl-2.0.0.Beta1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-selenium-server
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha2/arquillian-drone-selenium-server-2.0.0.Alpha2.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha2/arquillian-drone-selenium-server-2.0.0.Alpha2-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha2/arquillian-drone-selenium-server-2.0.0.Alpha2.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Beta1/arquillian-drone-selenium-server-2.0.0.Beta1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Beta1/arquillian-drone-selenium-server-2.0.0.Beta1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Beta1/arquillian-drone-selenium-server-2.0.0.Beta1.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-webdriver
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha2/arquillian-drone-webdriver-2.0.0.Alpha2.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha2/arquillian-drone-webdriver-2.0.0.Alpha2-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha2/arquillian-drone-webdriver-2.0.0.Alpha2.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Beta1/arquillian-drone-webdriver-2.0.0.Beta1.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Beta1/arquillian-drone-webdriver-2.0.0.Beta1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Beta1/arquillian-drone-webdriver-2.0.0.Beta1.pom" target="_blank">pom</a>
                 </li>
               </ul>
               <h3>
@@ -367,16 +407,7 @@
                 <dt>Component Upgrade</dt>
                 <dd>
                   <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1752">ARQ-1752</a> -         Upgrade junit dependency to version 4.11</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1755">ARQ-1755</a> -         Update Selenium to 2.41.0</li>
-                  </ul>
-                </dd>
-              </dl>
-              <dl>
-                <dt>Enhancement</dt>
-                <dd>
-                  <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1045">ARQ-1045</a> -         Fail fast if path to browser is not valid</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1995">ARQ-1995</a> -         Update to latest version of Selenium and Arquillian core</li>
                   </ul>
                 </dd>
               </dl>
@@ -384,10 +415,8 @@
                 <dt>Feature Request</dt>
                 <dd>
                   <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1744">ARQ-1744</a> -         Provide metadata storage in DroneContext</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1745">ARQ-1745</a> -         Rename InjectionPoint</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1746">ARQ-1746</a> -         Remove objects (instance, configuration) from Drone events</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1747">ARQ-1747</a> -         Move InjectionPoint one level up in DroneContext</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1176">ARQ-1176</a> -         automatically take screenshot and capture the html output on Assert failure or Exception</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1743">ARQ-1743</a> -         Merge configuration and callable creation together</li>
                   </ul>
                 </dd>
               </dl>
@@ -395,7 +424,9 @@
                 <dt>Bug</dt>
                 <dd>
                   <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1771">ARQ-1771</a> -         Putting custom annotation on Drone creates multiple instances</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1178">ARQ-1178</a> -         Arquillian Drone Module page on arquillian.org is out of date</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1340">ARQ-1340</a> -         Drone webdriver is not created during @BeforeClass</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-2006">ARQ-2006</a> -         ISE for deployment-scoped drone point when manual deployment is used</li>
                   </ul>
                 </dd>
               </dl>
@@ -403,18 +434,20 @@
                 <dt>Task</dt>
                 <dd>
                   <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1691">ARQ-1691</a> -         Flexible model for browsers SPI</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1754">ARQ-1754</a> -         Replace deprecated junit.framework.Assert</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1692">ARQ-1692</a> -         Factories should not bring runtime dependencies</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1696">ARQ-1696</a> -         Update documentation to cover Drone 2.0.0</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1697">ARQ-1697</a> -         Migration guide for users</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1698">ARQ-1698</a> -         Migration guide for developers</li>
                   </ul>
                 </dd>
               </dl>
               <p>
                 Thanks to the following list of contributors:
-                <a href="/community/tadeaskriz">Tadeas Kriz</a>, <a href="/community/kpiwko">Karel Piwko</a>
+                <a href="/community/matousjobanek">Matous Jobanek</a>
               </p>
             </div>
             <div class="footer">
-              <a href="/blog/2014/05/12/arquillian-extension-drone-2-0-0-Alpha2/">permalink</a>
+              <a href="/blog/2016/02/04/arquillian-extension-drone-2-0-0-Beta1/">permalink</a>
               |
               <i class="icon-tags"></i>
               tagged as
@@ -424,44 +457,22 @@
           <article class="post">
             <header class="header">
               <h2 class="title">
-                <a href="/blog/2014/04/08/arquillian-extension-drone-2-0-0-Alpha1/">Arquillian Drone Extension 2.0.0.Alpha1 Released</a>
+                <a href="/blog/2015/08/13/arquillian-extension-drone-2-0-0-Alpha5/">Arquillian Drone Extension 2.0.0.Alpha5 Released</a>
               </h2>
               <div class="byline">
-                <a href="/community/kpiwko">
-                  <img class="avatar" height="44" src="https://avatars.githubusercontent.com/u/355881?s=44" width="44" />
+                <a href="/community/matousjobanek">
+                  <img class="avatar" height="44" src="https://avatars.githubusercontent.com/u/1510709?s=44" width="44" />
                 </a>
                 <span class="author">Posted by
-                <a href="/community/kpiwko">Karel Piwko</a></span>
-                <span class="dateinline">on Apr 08, 2014</span>
-                <div class="date"><abbr>Apr</abbr> 08</div>
-                <span class="comments">| <a href="http://arquillian.org/blog/2014/04/08/arquillian-extension-drone-2-0-0-Alpha1/#disqus_thread" data-disqus-identifier="c4e68838c96cbf0b8351130fb06bb2b28d5d6dba">Comments</a></span>
+                <a href="/community/matousjobanek">Matous Jobanek</a></span>
+                <span class="dateinline">on Aug 13, 2015</span>
+                <div class="date"><abbr>Aug</abbr> 13</div>
+                <span class="comments">| <a href="http://arquillian.org/blog/2015/08/13/arquillian-extension-drone-2-0-0-Alpha5/#disqus_thread" data-disqus-identifier="23db721b738493848709b4015adab57f6192d2a0">Comments</a></span>
               </div>
             </header>
             <div class="body">
-              <p>The Arquillian team is proud to announce the <em>2.0.0.Alpha1</em> release of the <em>Arquillian Drone Extension</em> component!</p>
+              <p>The Arquillian team is proud to announce the <em>2.0.0.Alpha5</em> release of the <em>Arquillian Drone Extension</em> component!</p>
               <p><img src="/images/blog/drone_400.png" class="graphic pull-right" alt="" /></p>
-              <h3>New ways to use Drone</h3>
-              <p>Drone 2.0.0.Alpha1 is the first release of the Drone overhaul. We are aiming to provide you better support for:</p>
-              <ul>
-              	<li>extending Drone with new browser life cycles, such as one browser per <em>test suite</em></li>
-              	<li>smoother and easier integration with existing and future extensions</li>
-              	<li>support for Drones bounded to deployments</li>
-              	<li>and much more</li>
-              </ul>
-              <h3>Removing legacy and obsolete code from Drone</h3>
-              <p>Since the Drone project started more than 3 years ago, some of the configuration options has changed and some of the features are now available as part of Arquillian Core.<br />
-              The following code will be removed from Drone 2.x during the Alpha releases:</p>
-              <ul>
-              	<li>removing support for system properties (now directly available from Arquillian Core)</li>
-              	<li>using capability based configuration (removing deprecated properties)</li>
-              	<li>removing support for Selenium 1 and Graphene 1 (following Selenium project)</li>
-              	<li>changing Drone events to support command pattern and to rely on <em>Drone context</em></li>
-              	<li>removing <code>@Deprecated</code> code</li>
-              </ul>
-              <h3>What Drone version should I use?</h3>
-              <p>If you want a stable version, go with 1.3.0.Final. If you need to run tests on mobile devices, keep using 1.2.4.Final. We&#8217;ll be releasing Droidium based on the Drone 2.x stream soon to close the gap. However, if you like living on the edge, try Drone 2.0.0.Alpha1 and let us know how it works for you.</p>
-              <p>I&#8217;d like to thank Tadeáš Kříž. He&#8217;s our hero for this release, as he implemented most of the overhaul!</p>
-              <p>We hope that you&#8217;ll enjoy our new stuff and look forward to hear your feedback in the <a href="http://community.jboss.org/en/arquillian">community forums</a>.</p>
               <h3>What is Arquillian?</h3>
               <p>Arquillian is open source software that empowers you to test JVM-based applications more effectively. Created to defend the software galaxy from bugs, Arquillian brings your test to the runtime so you can focus on testing your application's behavior rather than managing the runtime. Using Arquillian, you can develop a comprehensive suite of tests from the convenience of your IDE and run them in any IDE, build tool or continuous integration environment.</p>
               <h3>Release details</h3>
@@ -476,19 +487,19 @@
                   <tr>
                     <th>Version</th>
                     <td>
-                      2.0.0.Alpha1
+                      2.0.0.Alpha5
                       <span class="label tag">
-                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/2facff68981d5dd5948a29f2ed0943ab553041aa.html">view tag</a>
+                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/79533c38924fb9e9c6433244244928e9d60d1bdc.html">view tag</a>
                       </span>
                     </td>
                   </tr>
                   <tr>
                     <th>Release date</th>
-                    <td>2014-04-02</td>
+                    <td>2015-08-04</td>
                   </tr>
                   <tr>
                     <th>Released by</th>
-                    <td>Karel Piwko</td>
+                    <td>Matous Jobanek</td>
                   </tr>
                   <tr>
                     <th>Compiled against</th>
@@ -497,9 +508,9 @@
                         <li>
                           <a href="/modules/core-platform/">Arquillian Core</a>
                           &#8211;
-                          <a href="/blog/2014/03/30/arquillian-core-1-1-4-Final/">1.1.4.Final</a>
+                          <a href="/blog/2015/04/17/arquillian-core-1-1-8-Final/">1.1.8.Final</a>
                         </li>
-                        <li>Selenium &#8211; 2.40.0</li>
+                        <li>Selenium &#8211; 2.47.1</li>
                       </ul>
                     </td>
                   </tr>
@@ -514,258 +525,81 @@
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-bom
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/2.0.0.Alpha1/arquillian-drone-bom-2.0.0.Alpha1.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/2.0.0.Alpha5/arquillian-drone-bom-2.0.0.Alpha5.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-webdriver-depchain
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/2.0.0.Alpha1/arquillian-drone-webdriver-depchain-2.0.0.Alpha1.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/2.0.0.Alpha5/arquillian-drone-webdriver-depchain-2.0.0.Alpha5.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-api
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha1/arquillian-drone-api-2.0.0.Alpha1.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha1/arquillian-drone-api-2.0.0.Alpha1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha1/arquillian-drone-api-2.0.0.Alpha1.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha5/arquillian-drone-api-2.0.0.Alpha5.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha5/arquillian-drone-api-2.0.0.Alpha5-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha5/arquillian-drone-api-2.0.0.Alpha5.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-spi
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha1/arquillian-drone-spi-2.0.0.Alpha1.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha1/arquillian-drone-spi-2.0.0.Alpha1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha1/arquillian-drone-spi-2.0.0.Alpha1.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha5/arquillian-drone-spi-2.0.0.Alpha5.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha5/arquillian-drone-spi-2.0.0.Alpha5-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha5/arquillian-drone-spi-2.0.0.Alpha5.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-configuration
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha1/arquillian-drone-configuration-2.0.0.Alpha1.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha1/arquillian-drone-configuration-2.0.0.Alpha1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha1/arquillian-drone-configuration-2.0.0.Alpha1.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha5/arquillian-drone-configuration-2.0.0.Alpha5.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha5/arquillian-drone-configuration-2.0.0.Alpha5-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha5/arquillian-drone-configuration-2.0.0.Alpha5.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-impl
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha1/arquillian-drone-impl-2.0.0.Alpha1.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha1/arquillian-drone-impl-2.0.0.Alpha1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha1/arquillian-drone-impl-2.0.0.Alpha1.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha5/arquillian-drone-impl-2.0.0.Alpha5.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha5/arquillian-drone-impl-2.0.0.Alpha5-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha5/arquillian-drone-impl-2.0.0.Alpha5.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-selenium-server
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha1/arquillian-drone-selenium-server-2.0.0.Alpha1.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha1/arquillian-drone-selenium-server-2.0.0.Alpha1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha1/arquillian-drone-selenium-server-2.0.0.Alpha1.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha5/arquillian-drone-selenium-server-2.0.0.Alpha5.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha5/arquillian-drone-selenium-server-2.0.0.Alpha5-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha5/arquillian-drone-selenium-server-2.0.0.Alpha5.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-webdriver
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha1/arquillian-drone-webdriver-2.0.0.Alpha1.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha1/arquillian-drone-webdriver-2.0.0.Alpha1-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha1/arquillian-drone-webdriver-2.0.0.Alpha1.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha5/arquillian-drone-webdriver-2.0.0.Alpha5.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha5/arquillian-drone-webdriver-2.0.0.Alpha5-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha5/arquillian-drone-webdriver-2.0.0.Alpha5.pom" target="_blank">pom</a>
                 </li>
               </ul>
               <h3>
                 Release notes and resolved issues
-                <small>5</small>
+                <small>6</small>
               </h3>
-              <p>Introducing more flexible scopes</p>
-              <dl>
-                <dt>Enhancement</dt>
-                <dd>
-                  <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1707">ARQ-1707</a> -         Provide better timeout exception message</li>
-                  </ul>
-                </dd>
-              </dl>
-              <dl>
-                <dt>Task</dt>
-                <dd>
-                  <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1669">ARQ-1669</a> -         Remove temporary workaround for Executor Service</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1688">ARQ-1688</a> -         Drop Selenium 1.0 support</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1700">ARQ-1700</a> -         Provide Deployment scope support for Drone</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1708">ARQ-1708</a> -         Remove legacy configuration</li>
-                  </ul>
-                </dd>
-              </dl>
-              <p>
-                Thanks to the following list of contributors:
-                <a href="/community/tadeaskriz">Tadeas Kriz</a>, <a href="/community/kpiwko">Karel Piwko</a>
-              </p>
-            </div>
-            <div class="footer">
-              <a href="/blog/2014/04/08/arquillian-extension-drone-2-0-0-Alpha1/">permalink</a>
-              |
-              <i class="icon-tags"></i>
-              tagged as
-              <a class="tag" href="/blog/tags/release/">release</a> <a class="tag" href="/blog/tags/extension/">extension</a> <a class="tag" href="/blog/tags/drone/">drone</a>
-            </div>
-          </article>
-          <article class="post">
-            <header class="header">
-              <h2 class="title">
-                <a href="/blog/2014/03/24/arquillian-extension-drone-1-3-0-Final/">Arquillian Drone Extension 1.3.0.Final Released</a>
-              </h2>
-              <div class="byline">
-                <a href="/community/kpiwko">
-                  <img class="avatar" height="44" src="https://avatars.githubusercontent.com/u/355881?s=44" width="44" />
-                </a>
-                <span class="author">Posted by
-                <a href="/community/kpiwko">Karel Piwko</a></span>
-                <span class="dateinline">on Mar 24, 2014</span>
-                <div class="date"><abbr>Mar</abbr> 24</div>
-                <span class="comments">| <a href="http://arquillian.org/blog/2014/03/24/arquillian-extension-drone-1-3-0-Final/#disqus_thread" data-disqus-identifier="fa0b60e4860732ab7247b4c4b8523ffb94c2b2b4">Comments</a></span>
-              </div>
-            </header>
-            <div class="body">
-              <p>The Arquillian team is proud to announce the <em>1.3.0.Final</em> release of the <em>Arquillian Drone Extension</em> component!</p>
-              <p><img src="/images/blog/drone_400.png" class="graphic pull-right" alt="" /></p>
-              <h3>Removal of mobile related capabilities</h3>
-              <p>In Arquillian Drone 1.3.0.Final we&#8217;ve upgraded to use Selenium 2.40.0. While the new version of Selenium brings you support for the latest browsers, it also dropped support for the <strong>android</strong> and <strong>iphone</strong> drivers. This change also effect Graphene, so make sure that you use Graphene 2.0.2.Final together with Drone 1.3.0.Final.</p>
-              <p>The <strong>android</strong> gap left by Selenium will be closed in a future release of Arquillian Drodium, where we will add test support for all native, hybrid and mobile web applications. Closing the <strong>iphone</strong> gap will unfortunately take us a little bit longer.</p>
-              <p>If you need to test on mobile devices, please keep using Arquillian Drone 1.2.4.Final. If you want the latest and greatest stuff for desktop browsers, go for Drone 1.3.0.Final.</p>
-              <p>We hope that you&#8217;ll enjoy our new stuff and look forward to hear your feedback in the <a href="http://community.jboss.org/en/arquillian">community forums</a>.</p>
-              <h3>What is Arquillian?</h3>
-              <p>Arquillian is open source software that empowers you to test JVM-based applications more effectively. Created to defend the software galaxy from bugs, Arquillian brings your test to the runtime so you can focus on testing your application's behavior rather than managing the runtime. Using Arquillian, you can develop a comprehensive suite of tests from the convenience of your IDE and run them in any IDE, build tool or continuous integration environment.</p>
-              <h3>Release details</h3>
-              <table class="table table-bordered table-striped">
-                <tbody>
-                  <tr>
-                    <th>Component</th>
-                    <td>
-                      <a href="/modules/drone-extension/">Arquillian Drone Extension</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Version</th>
-                    <td>
-                      1.3.0.Final
-                      <span class="label tag">
-                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/d5917130bc22f6d2d87380ea6d7b1a4619cd292a.html">view tag</a>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Release date</th>
-                    <td>2014-03-13</td>
-                  </tr>
-                  <tr>
-                    <th>Released by</th>
-                    <td>Karel Piwko</td>
-                  </tr>
-                  <tr>
-                    <th>Compiled against</th>
-                    <td>
-                      <ul class="unstyled">
-                        <li>
-                          <a href="/modules/core-platform/">Arquillian Core</a>
-                          &#8211;
-                          <a href="/blog/2014/02/19/arquillian-core-1-1-3-Final/">1.1.3.Final</a>
-                        </li>
-                        <li>Selenium &#8211; 2.40.0</li>
-                      </ul>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h3>
-                Published artifacts
-                <small>org.jboss.arquillian.extension</small>
-              </h3>
-              <ul>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-bom
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/1.3.0.Final/arquillian-drone-bom-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-selenium-depchain
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-depchain/1.3.0.Final/arquillian-drone-selenium-depchain-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-webdriver-depchain
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/1.3.0.Final/arquillian-drone-webdriver-depchain-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-api
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/1.3.0.Final/arquillian-drone-api-1.3.0.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/1.3.0.Final/arquillian-drone-api-1.3.0.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/1.3.0.Final/arquillian-drone-api-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-spi
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/1.3.0.Final/arquillian-drone-spi-1.3.0.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/1.3.0.Final/arquillian-drone-spi-1.3.0.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/1.3.0.Final/arquillian-drone-spi-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-configuration
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/1.3.0.Final/arquillian-drone-configuration-1.3.0.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/1.3.0.Final/arquillian-drone-configuration-1.3.0.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/1.3.0.Final/arquillian-drone-configuration-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-impl
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/1.3.0.Final/arquillian-drone-impl-1.3.0.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/1.3.0.Final/arquillian-drone-impl-1.3.0.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/1.3.0.Final/arquillian-drone-impl-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-selenium-server
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/1.3.0.Final/arquillian-drone-selenium-server-1.3.0.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/1.3.0.Final/arquillian-drone-selenium-server-1.3.0.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/1.3.0.Final/arquillian-drone-selenium-server-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-selenium
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium/1.3.0.Final/arquillian-drone-selenium-1.3.0.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium/1.3.0.Final/arquillian-drone-selenium-1.3.0.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium/1.3.0.Final/arquillian-drone-selenium-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-webdriver
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/1.3.0.Final/arquillian-drone-webdriver-1.3.0.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/1.3.0.Final/arquillian-drone-webdriver-1.3.0.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/1.3.0.Final/arquillian-drone-webdriver-1.3.0.Final.pom" target="_blank">pom</a>
-                </li>
-              </ul>
-              <h3>
-                Release notes and resolved issues
-                <small>3</small>
-              </h3>
-              <p>Maintenace release without iOS and Android Drivers</p>
+              <p></p>
               <dl>
                 <dt>Component Upgrade</dt>
                 <dd>
                   <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1659">ARQ-1659</a> -         Update Selenium to 2.40.0</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1705">ARQ-1705</a> -         Update Core to 1.1.3.Final</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1962">ARQ-1962</a> -         Update Drone to use 2.46.0 Selenium</li>
+                  </ul>
+                </dd>
+              </dl>
+              <dl>
+                <dt>Feature Request</dt>
+                <dd>
+                  <ul class="unstyled">
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1775">ARQ-1775</a> -         Allow to disable/enable nativeEvents via arquillian.xml</li>
                   </ul>
                 </dd>
               </dl>
@@ -773,27 +607,37 @@
                 <dt>Bug</dt>
                 <dd>
                   <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1576">ARQ-1576</a> -         RuntimeException after testng suite switched</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1823">ARQ-1823</a> -         ChromeBinary is not picked by ChromeDriver</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1874">ARQ-1874</a> -         Allow Drone to skip session file creation</li>
+                  </ul>
+                </dd>
+              </dl>
+              <dl>
+                <dt>Task</dt>
+                <dd>
+                  <ul class="unstyled">
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1639">ARQ-1639</a> -         Enable UnusedImports in checkstyle rules</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1689">ARQ-1689</a> -         Drop Android and iOS Drivers</li>
                   </ul>
                 </dd>
               </dl>
               <p>
                 Thanks to the following list of contributors:
-                <a href="/community/kpiwko">Karel Piwko</a>
+                <a href="/community/matousjobanek">Matous Jobanek</a>, <a href="/community/kpiwko">Karel Piwko</a>
               </p>
             </div>
             <div class="footer">
-              <a href="/blog/2014/03/24/arquillian-extension-drone-1-3-0-Final/">permalink</a>
+              <a href="/blog/2015/08/13/arquillian-extension-drone-2-0-0-Alpha5/">permalink</a>
               |
               <i class="icon-tags"></i>
               tagged as
-              <a class="tag" href="/blog/tags/release/">release</a> <a class="tag" href="/blog/tags/extension/">extension</a> <a class="tag" href="/blog/tags/drone/">drone</a> <a class="tag" href="/blog/tags/jbosscentral/">jbosscentral</a>
+              <a class="tag" href="/blog/tags/release/">release</a> <a class="tag" href="/blog/tags/extension/">extension</a> <a class="tag" href="/blog/tags/drone/">drone</a>
             </div>
           </article>
           <article class="post">
             <header class="header">
               <h2 class="title">
-                <a href="/blog/2014/03/05/arquillian-extension-drone-1-2-4-Final/">Arquillian Drone Extension 1.2.4.Final Released</a>
+                <a href="/blog/2015/03/19/arquillian-extension-drone-2-0-0-Alpha4/">Arquillian Drone Extension 2.0.0.Alpha4 Released</a>
               </h2>
               <div class="byline">
                 <a href="/community/kpiwko">
@@ -801,22 +645,14 @@
                 </a>
                 <span class="author">Posted by
                 <a href="/community/kpiwko">Karel Piwko</a></span>
-                <span class="dateinline">on Mar 05, 2014</span>
-                <div class="date"><abbr>Mar</abbr> 05</div>
-                <span class="comments">| <a href="http://arquillian.org/blog/2014/03/05/arquillian-extension-drone-1-2-4-Final/#disqus_thread" data-disqus-identifier="06ca60a6b6886bb6ce53dbb57db7d2e3f08cf649">Comments</a></span>
+                <span class="dateinline">on Mar 19, 2015</span>
+                <div class="date"><abbr>Mar</abbr> 19</div>
+                <span class="comments">| <a href="http://arquillian.org/blog/2015/03/19/arquillian-extension-drone-2-0-0-Alpha4/#disqus_thread" data-disqus-identifier="384b1881b7fd6d852e3a02c1ad9e6e7e9c12f6a6">Comments</a></span>
               </div>
             </header>
             <div class="body">
-              <p>The Arquillian team is proud to announce the <em>1.2.4.Final</em> release of the <em>Arquillian Drone Extension</em> component!</p>
+              <p>The Arquillian team is proud to announce the <em>2.0.0.Alpha4</em> release of the <em>Arquillian Drone Extension</em> component!</p>
               <p><img src="/images/blog/drone_400.png" class="graphic pull-right" alt="" /></p>
-              <p>This is a community driven bugfix release. If you have updated to Arquillian Core 1.1.3.Final, make sure to update Drone to this version.</p>
-              <p>I&#8217;d like to thank everybody involved in this release, especially thanks to Juraj Húska and Tilmann Kuhn. <em>You guys make testing a breeze!</em></p>
-              <h3>Drone 2.0.0.Alpha1 coming soon</h3>
-              <p>Selenium 2.40.0 dropped support for <code>AndroidDriver</code> and <code>iPhoneDriver</code>. We believe that this change should not affect Drone users that much, <br />
-              therefore we aim to make <a href="/modules/droidium-extension/">Arquillian Droidium</a> (based on <a href="http://selendroid.io/">Selendroid</a>), <a href="http://ios-driver.github.io/ios-driver/">ios-driver</a> and <a href="http://appium.io/">Appium</a> a drop-in replacement for Android and iOS browser testing. While we try to maintain backwards compatibility of Drone, the underlying changes to make this happen will form a baseline for the Drone 2.0.0 release. Roadmap coming soon. We&#8217;ll need your help to make the transition smooth and preserve backwards compatibility, so stay tuned!</p>
-              <h4>What happens with Drone 1.x ?</h4>
-              <p>We&#8217;ll drop non-supported browsers (Android, iOS) in Drone 1.3.0.Final. Because we&#8217;ll keep releasing Selenium BOM, you will be able to <a href="https://community.jboss.org/wiki/HowDoISpecifyTheSeleniumVersionInArquillianDrone">update Selenium to get latest browsers supported</a>. Apart from Selenium updates, the Drone 1.x branch will only get security and critical bug fixes.</p>
-              <p>We hope that you&#8217;ll enjoy our new stuff and look forward to hear your feedback in the <a href="http://community.jboss.org/en/arquillian">community forums</a>.</p>
               <h3>What is Arquillian?</h3>
               <p>Arquillian is open source software that empowers you to test JVM-based applications more effectively. Created to defend the software galaxy from bugs, Arquillian brings your test to the runtime so you can focus on testing your application's behavior rather than managing the runtime. Using Arquillian, you can develop a comprehensive suite of tests from the convenience of your IDE and run them in any IDE, build tool or continuous integration environment.</p>
               <h3>Release details</h3>
@@ -831,15 +667,15 @@
                   <tr>
                     <th>Version</th>
                     <td>
-                      1.2.4.Final
+                      2.0.0.Alpha4
                       <span class="label tag">
-                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/4c9ab43891dce7454daca70b66fe6da08087d027.html">view tag</a>
+                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/894bde5c2a9262aaa72d92e2a1dfce26307f1a0e.html">view tag</a>
                       </span>
                     </td>
                   </tr>
                   <tr>
                     <th>Release date</th>
-                    <td>2014-03-03</td>
+                    <td>2015-03-02</td>
                   </tr>
                   <tr>
                     <th>Released by</th>
@@ -852,9 +688,9 @@
                         <li>
                           <a href="/modules/core-platform/">Arquillian Core</a>
                           &#8211;
-                          <a href="/blog/2013/11/15/arquillian-core-1-1-2-Final/">1.1.2.Final</a>
+                          <a href="/blog/2015/02/11/arquillian-core-1-1-7-Final/">1.1.7.Final</a>
                         </li>
-                        <li>Selenium &#8211; 2.39.0</li>
+                        <li>Selenium &#8211; 2.45.0</li>
                       </ul>
                     </td>
                   </tr>
@@ -869,104 +705,243 @@
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-bom
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/1.2.4.Final/arquillian-drone-bom-1.2.4.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-selenium-depchain
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-depchain/1.2.4.Final/arquillian-drone-selenium-depchain-1.2.4.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/2.0.0.Alpha4/arquillian-drone-bom-2.0.0.Alpha4.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-webdriver-depchain
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/1.2.4.Final/arquillian-drone-webdriver-depchain-1.2.4.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/2.0.0.Alpha4/arquillian-drone-webdriver-depchain-2.0.0.Alpha4.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-api
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/1.2.4.Final/arquillian-drone-api-1.2.4.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/1.2.4.Final/arquillian-drone-api-1.2.4.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/1.2.4.Final/arquillian-drone-api-1.2.4.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha4/arquillian-drone-api-2.0.0.Alpha4.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha4/arquillian-drone-api-2.0.0.Alpha4-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha4/arquillian-drone-api-2.0.0.Alpha4.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-spi
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/1.2.4.Final/arquillian-drone-spi-1.2.4.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/1.2.4.Final/arquillian-drone-spi-1.2.4.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/1.2.4.Final/arquillian-drone-spi-1.2.4.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha4/arquillian-drone-spi-2.0.0.Alpha4.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha4/arquillian-drone-spi-2.0.0.Alpha4-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha4/arquillian-drone-spi-2.0.0.Alpha4.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-configuration
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/1.2.4.Final/arquillian-drone-configuration-1.2.4.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/1.2.4.Final/arquillian-drone-configuration-1.2.4.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/1.2.4.Final/arquillian-drone-configuration-1.2.4.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha4/arquillian-drone-configuration-2.0.0.Alpha4.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha4/arquillian-drone-configuration-2.0.0.Alpha4-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha4/arquillian-drone-configuration-2.0.0.Alpha4.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-impl
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/1.2.4.Final/arquillian-drone-impl-1.2.4.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/1.2.4.Final/arquillian-drone-impl-1.2.4.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/1.2.4.Final/arquillian-drone-impl-1.2.4.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha4/arquillian-drone-impl-2.0.0.Alpha4.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha4/arquillian-drone-impl-2.0.0.Alpha4-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha4/arquillian-drone-impl-2.0.0.Alpha4.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-selenium-server
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/1.2.4.Final/arquillian-drone-selenium-server-1.2.4.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/1.2.4.Final/arquillian-drone-selenium-server-1.2.4.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/1.2.4.Final/arquillian-drone-selenium-server-1.2.4.Final.pom" target="_blank">pom</a>
-                </li>
-                <li>
-                  org.jboss.arquillian.extension
-                  &raquo;
-                  arquillian-drone-selenium
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium/1.2.4.Final/arquillian-drone-selenium-1.2.4.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium/1.2.4.Final/arquillian-drone-selenium-1.2.4.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium/1.2.4.Final/arquillian-drone-selenium-1.2.4.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha4/arquillian-drone-selenium-server-2.0.0.Alpha4.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha4/arquillian-drone-selenium-server-2.0.0.Alpha4-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha4/arquillian-drone-selenium-server-2.0.0.Alpha4.pom" target="_blank">pom</a>
                 </li>
                 <li>
                   org.jboss.arquillian.extension
                   &raquo;
                   arquillian-drone-webdriver
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/1.2.4.Final/arquillian-drone-webdriver-1.2.4.Final.jar" target="_blank">jar</a>
-                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/1.2.4.Final/arquillian-drone-webdriver-1.2.4.Final-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
-                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/1.2.4.Final/arquillian-drone-webdriver-1.2.4.Final.pom" target="_blank">pom</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha4/arquillian-drone-webdriver-2.0.0.Alpha4.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha4/arquillian-drone-webdriver-2.0.0.Alpha4-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha4/arquillian-drone-webdriver-2.0.0.Alpha4.pom" target="_blank">pom</a>
                 </li>
               </ul>
               <h3>
                 Release notes and resolved issues
-                <small>4</small>
+                <small>2</small>
+              </h3>
+              <p></p>
+              <dl>
+                <dt>Component Upgrade</dt>
+                <dd>
+                  <ul class="unstyled">
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1929">ARQ-1929</a> -         Update Selenium to 2.45.0</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1930">ARQ-1930</a> -         Update Arquillian Core to 1.1.7.Final</li>
+                  </ul>
+                </dd>
+              </dl>
+              <p>
+                Thanks to the following list of contributors:
+                <a href="/community/kpiwko">Karel Piwko</a>, <a href="/community/smiklosovic">Stefan Miklosovic</a>, <a href="/community/aslakknutsen">Aslak Knutsen</a>
+              </p>
+            </div>
+            <div class="footer">
+              <a href="/blog/2015/03/19/arquillian-extension-drone-2-0-0-Alpha4/">permalink</a>
+              |
+              <i class="icon-tags"></i>
+              tagged as
+              <a class="tag" href="/blog/tags/release/">release</a> <a class="tag" href="/blog/tags/extension/">extension</a> <a class="tag" href="/blog/tags/drone/">drone</a>
+            </div>
+          </article>
+          <article class="post">
+            <header class="header">
+              <h2 class="title">
+                <a href="/blog/2015/01/23/arquillian-extension-drone-2-0-0-Alpha3/">Arquillian Drone Extension 2.0.0.Alpha3 Released</a>
+              </h2>
+              <div class="byline">
+                <a href="/community/kpiwko">
+                  <img class="avatar" height="44" src="https://avatars.githubusercontent.com/u/355881?s=44" width="44" />
+                </a>
+                <span class="author">Posted by
+                <a href="/community/kpiwko">Karel Piwko</a></span>
+                <span class="dateinline">on Jan 23, 2015</span>
+                <div class="date"><abbr>Jan</abbr> 23</div>
+                <span class="comments">| <a href="http://arquillian.org/blog/2015/01/23/arquillian-extension-drone-2-0-0-Alpha3/#disqus_thread" data-disqus-identifier="7bda572cc1a5c148f1b32effeb443c02796aaa41">Comments</a></span>
+              </div>
+            </header>
+            <div class="body">
+              <p>The Arquillian team is proud to announce the <em>2.0.0.Alpha3</em> release of the <em>Arquillian Drone Extension</em> component!</p>
+              
+              <h3>What is Arquillian?</h3>
+              <p>Arquillian is open source software that empowers you to test JVM-based applications more effectively. Created to defend the software galaxy from bugs, Arquillian brings your test to the runtime so you can focus on testing your application's behavior rather than managing the runtime. Using Arquillian, you can develop a comprehensive suite of tests from the convenience of your IDE and run them in any IDE, build tool or continuous integration environment.</p>
+              <h3>Release details</h3>
+              <table class="table table-bordered table-striped">
+                <tbody>
+                  <tr>
+                    <th>Component</th>
+                    <td>
+                      <a href="/modules/drone-extension/">Arquillian Drone Extension</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Version</th>
+                    <td>
+                      2.0.0.Alpha3
+                      <span class="label tag">
+                        <a href="https://github.com/arquillian/arquillian-extension-drone/commit/fa43cc0ae825263056e1735dbe59c2f913eed4d2.html">view tag</a>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Release date</th>
+                    <td>2015-01-23</td>
+                  </tr>
+                  <tr>
+                    <th>Released by</th>
+                    <td>Karel Piwko</td>
+                  </tr>
+                  <tr>
+                    <th>Compiled against</th>
+                    <td>
+                      <ul class="unstyled">
+                        <li>
+                          <a href="/modules/core-platform/">Arquillian Core</a>
+                          &#8211;
+                          <a href="/blog/2014/06/25/arquillian-core-1-1-5-Final/">1.1.5.Final</a>
+                        </li>
+                        <li>Selenium &#8211; 2.43.1</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3>
+                Published artifacts
+                <small>org.jboss.arquillian.extension</small>
+              </h3>
+              <ul>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-bom
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-bom/2.0.0.Alpha3/arquillian-drone-bom-2.0.0.Alpha3.pom" target="_blank">pom</a>
+                </li>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-webdriver-depchain
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver-depchain/2.0.0.Alpha3/arquillian-drone-webdriver-depchain-2.0.0.Alpha3.pom" target="_blank">pom</a>
+                </li>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-api
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha3/arquillian-drone-api-2.0.0.Alpha3.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha3/arquillian-drone-api-2.0.0.Alpha3-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-api/2.0.0.Alpha3/arquillian-drone-api-2.0.0.Alpha3.pom" target="_blank">pom</a>
+                </li>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-spi
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha3/arquillian-drone-spi-2.0.0.Alpha3.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha3/arquillian-drone-spi-2.0.0.Alpha3-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-spi/2.0.0.Alpha3/arquillian-drone-spi-2.0.0.Alpha3.pom" target="_blank">pom</a>
+                </li>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-configuration
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha3/arquillian-drone-configuration-2.0.0.Alpha3.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha3/arquillian-drone-configuration-2.0.0.Alpha3-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-configuration/2.0.0.Alpha3/arquillian-drone-configuration-2.0.0.Alpha3.pom" target="_blank">pom</a>
+                </li>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-impl
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha3/arquillian-drone-impl-2.0.0.Alpha3.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha3/arquillian-drone-impl-2.0.0.Alpha3-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-impl/2.0.0.Alpha3/arquillian-drone-impl-2.0.0.Alpha3.pom" target="_blank">pom</a>
+                </li>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-selenium-server
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha3/arquillian-drone-selenium-server-2.0.0.Alpha3.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha3/arquillian-drone-selenium-server-2.0.0.Alpha3-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-selenium-server/2.0.0.Alpha3/arquillian-drone-selenium-server-2.0.0.Alpha3.pom" target="_blank">pom</a>
+                </li>
+                <li>
+                  org.jboss.arquillian.extension
+                  &raquo;
+                  arquillian-drone-webdriver
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha3/arquillian-drone-webdriver-2.0.0.Alpha3.jar" target="_blank">jar</a>
+                  <a class="artifact" href="https://repository.jboss.org/nexus/content/repositories/unzip/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha3/arquillian-drone-webdriver-2.0.0.Alpha3-javadoc.jar-unzip/index.html" target="_blank">javadoc</a>
+                  <a class="artifact" href="http://repo1.maven.org/maven2/org/jboss/arquillian/extension/arquillian-drone-webdriver/2.0.0.Alpha3/arquillian-drone-webdriver-2.0.0.Alpha3.pom" target="_blank">pom</a>
+                </li>
+              </ul>
+              <h3>
+                Release notes and resolved issues
+                <small>2</small>
               </h3>
               <p></p>
               <dl>
                 <dt>Bug</dt>
                 <dd>
                   <ul class="unstyled">
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1634">ARQ-1634</a> -         Automatic augmentation of RemoteWebDriver is not done - canEnhance returns always false</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1638">ARQ-1638</a> -         ChromeDriver binary capability is not propagated</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1653">ARQ-1653</a> -         Drone use concurrent.ExecutorService without Context inheritance on Threads</li>
-                    <li><a href="https://issues.jboss.org/browse/ARQ-1655">ARQ-1655</a> -         NPE in WebDriverFactory.createInstance()</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1882">ARQ-1882</a> -         NPE in ConfigurationMapper</li>
+                    <li><a href="https://issues.jboss.org/browse/ARQ-1888">ARQ-1888</a> -         IE driver 2.43+ fails to start due to missing capabilities type mapping</li>
                   </ul>
                 </dd>
               </dl>
               <p>
                 Thanks to the following list of contributors:
-                <a href="/community/kpiwko">Karel Piwko</a>, <a href="/community/aslakknutsen">Aslak Knutsen</a>, <a href="/community/jhuska">Juraj Huska</a>
+                <a href="/community/kpiwko">Karel Piwko</a>, <a href="/community/tadeaskriz">Tadeas Kriz</a>, <a href="/community/smiklosovic">Stefan Miklosovic</a>, <a href="/community/yurloc">Jiří Locker</a>
               </p>
             </div>
             <div class="footer">
-              <a href="/blog/2014/03/05/arquillian-extension-drone-1-2-4-Final/">permalink</a>
+              <a href="/blog/2015/01/23/arquillian-extension-drone-2-0-0-Alpha3/">permalink</a>
               |
               <i class="icon-tags"></i>
               tagged as
-              <a class="tag" href="/blog/tags/release/">release</a> <a class="tag" href="/blog/tags/extension/">extension</a> <a class="tag" href="/blog/tags/drone/">drone</a> <a class="tag" href="/blog/tags/jbosscentral/">jbosscentral</a>
+              <a class="tag" href="/blog/tags/release/">release</a> <a class="tag" href="/blog/tags/extension/">extension</a> <a class="tag" href="/blog/tags/drone/">drone</a>
             </div>
             
                         <script type="text/javascript">
@@ -982,7 +957,7 @@
             <li class="previous">
               <a href="/blog/tags/drone/page/5/">&laquo; Older</a>
             </li>
-            <li class="pages">Page 4 of 9</li>
+            <li class="pages">Page 4 of 10</li>
             <li class="next">
               <a href="/blog/tags/drone/page/3/">Newer &raquo;</a>
             </li>
@@ -1000,42 +975,42 @@
             <ul>
               <li>
                 <div class="title">
-                  <a href="/blog/2017/06/15/arquillian-algeron-1-0-1/">Arquillian Algeron Extension 1.0.1 Released</a>
+                  <a href="/blog/2017/09/14/smart-testing-0-0-1/">Smart Testing 0.0.1 Released</a>
                 </div>
                 <div class="meta">
-                  Jun 15, 2017
+                  Sep 14, 2017
                 </div>
               </li>
               <li>
                 <div class="title">
-                  <a href="/blog/2017/06/14/arquillian-cube-1-6-0/">Arquillian Cube Extension 1.6.0 Released</a>
+                  <a href="/blog/2017/09/06/arquillian-extension-drone-2-4-2/">Arquillian Drone Extension 2.4.2 Released</a>
                 </div>
                 <div class="meta">
-                  Jun 14, 2017
+                  Sep 06, 2017
                 </div>
               </li>
               <li>
                 <div class="title">
-                  <a href="/blog/2017/06/13/arquillian-extension-drone-2-2-0/">Arquillian Drone Extension 2.2.0 Released</a>
+                  <a href="/blog/2017/09/04/arquillian-universe-bom-1-1-13-7/">Arquillian Universe 1.1.13.7 Released</a>
                 </div>
                 <div class="meta">
-                  Jun 13, 2017
+                  Sep 04, 2017
                 </div>
               </li>
               <li>
                 <div class="title">
-                  <a href="/blog/2017/06/09/arquillian-cube-1-5-1/">Arquillian Cube Extension 1.5.1 Released</a>
+                  <a href="/blog/2017/08/29/arquillian-universe-bom-1-1-13-6/">Arquillian Universe 1.1.13.6 Released</a>
                 </div>
                 <div class="meta">
-                  Jun 09, 2017
+                  Aug 29, 2017
                 </div>
               </li>
               <li>
                 <div class="title">
-                  <a href="/blog/2017/06/02/arquillian-spacelift-1-0-2/">Arquillian Spacelift 1.0.2 Released</a>
+                  <a href="/blog/2017/08/24/arquillian-extension-drone-2-4-1/">Arquillian Drone Extension 2.4.1 Released</a>
                 </div>
                 <div class="meta">
-                  Jun 02, 2017
+                  Aug 24, 2017
                 </div>
               </li>
             </ul>
@@ -1357,6 +1332,9 @@
               <span class="tag tag-1">
                 <a href="http://arquillian.org/blog/tags/tomcat/">tomcat</a>
               </span>
+              <span class="tag tag-0">
+                <a href="http://arquillian.org/blog/tags/tool/">tool</a>
+              </span>
               <span class="tag tag-1">
                 <a href="http://arquillian.org/blog/tags/tool-plugin/">tool-plugin</a>
               </span>
@@ -1489,7 +1467,7 @@
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.2/bootstrap.min.js"></script>
     <script src="/javascripts/prettify.js"></script>
-    <script src="/javascripts/site.js?77c499754d81f1987fe5a88964d17dfdb59bd0bb"></script>
+    <script src="/javascripts/site.js?77e5d1c603454eaa1ed10eec4de20359ad2f2cdf"></script>
     <script>
       (function() {
         var po = document.createElement('script'); po.async = true; po.src = 'https://apis.google.com/js/plusone.js';
